@@ -1,0 +1,2839 @@
+@import url('/fonts/fonts.css');
+
+// ==========================================================================
+// UNIVERSAL — Theme variables and base styles
+// ==========================================================================
+
+:root {
+  font-family: 'Crimson Text', Georgia, serif;
+  color: #f4efdc;
+  background: #03271c;
+  font-synthesis: none;
+  --gold: #bfa173;
+  --gold-light: #d4ba86;
+  --cream: #f4efdc;
+  --forest: #062a1f;
+  --line: rgba(191, 161, 115, .6);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 130px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #03271c url('/assets/forest.webp') center top / cover no-repeat;
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+button, input {
+  font: inherit;
+}
+
+button, a, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 5px;
+}
+
+a:hover, .text-button:hover {
+  color: var(--gold-light);
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 2px solid #f4df9d;
+  outline-offset: 5px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,h2,h3,p {
+  margin-top: 0;
+}
+
+h1,h2,h3 {
+  font-weight: 500;
+  line-height: 1.12;
+}
+
+h2 {
+  font-size: clamp(30px, 3.1vw, 44px);
+  margin-bottom: 26px;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+// ==========================================================================
+// UNIVERSAL — Accessibility and text utilities
+// ==========================================================================
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.small {
+  font-size: 16px;
+}
+
+.italic, .eyebrow {
+  font-style: normal;
+}
+
+.gold {
+  color: var(--gold-light);
+}
+
+// ==========================================================================
+// PAGE LAYOUT — Main content container
+// ==========================================================================
+
+.site-shell {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 52px;
+}
+
+// ==========================================================================
+// HEADER — Branding and navigation
+// ==========================================================================
+
+.site-header {
+  min-height: 115px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 30px;
+  gap: 25px;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 52px;
+  height: 1px;
+  background: linear-gradient(to right,var(--line) 0 28%,transparent 28% 72%,var(--line) 72% 100%);
+}
+
+.brand {
+  position: relative;
+  display: flex;
+  gap: 17px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.ringsted-wordmark {
+  font-family: 'Inter',sans-serif;
+  font-size: 24px;
+  letter-spacing: -1px;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--line);
+}
+
+.partner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.partner small {
+  font-size: 11px;
+  font-style: normal;
+}
+
+.partner strong {
+  font-size: 26px;
+  font-style: normal;
+}
+
+.header-actions {
+  position: absolute;
+  right: 0;
+  top: 75px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+// ==========================================================================
+// SHARED BUTTONS — Outline button
+// ==========================================================================
+
+.outline-button {
+  border: 1px solid var(--gold);
+  background: transparent;
+  padding: 2px 23px;
+  font-size: 16px;
+  min-height: 30px;
+}
+
+.outline-button:hover {
+  background: #bfa17318;
+}
+
+// ==========================================================================
+// HEADER — Back link
+// ==========================================================================
+
+.back-link {
+  position: absolute;
+  left: 0;
+  top: 83px;
+  font-size: 18px;
+}
+
+// ==========================================================================
+// HERO — Heading, subtitle and feather
+// ==========================================================================
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  min-height: 455px;
+  padding: 30px 70px 35px;
+}
+
+.hero-copy {
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(74px,8.5vw,118px);
+  letter-spacing: -3px;
+  margin: 0 auto 22px;
+  line-height: .95;
+  position: relative;
+  width: max-content;
+}
+
+.hero h1::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--line);
+  width: 92%;
+  margin: 15px auto 0;
+}
+
+.eyebrow {
+  font-size: 23px;
+  margin-bottom: 16px;
+}
+
+.hero-subtitle {
+  font-size: 23px;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+// ==========================================================================
+// SHARED BUTTONS — Gold button
+// ==========================================================================
+
+.gold-button {
+  background: linear-gradient(100deg,#b49254,#d0b57d 47%,#b28b4b);
+  border: 0;
+  color: #173125;
+  min-width: 180px;
+  min-height: 42px;
+  padding: 7px 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(5px 0,calc(100% - 5px) 0,calc(100% - 5px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 5px) calc(100% - 4px),calc(100% - 5px) 100%,5px 100%,5px calc(100% - 4px),0 calc(100% - 4px),0 4px,5px 4px);
+  text-decoration: none;
+  font-size: 20px;
+  transition: filter .2s,transform .2s;
+}
+
+.gold-button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.gold-button:focus-visible {
+  clip-path: none;
+  outline: 4px solid #fff8dc;
+  outline-offset: 5px;
+  box-shadow: 0 0 0 9px #03271c;
+  background: #f4df9d;
+  color: #03271c;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.gold-button:disabled {
+  opacity: .5;
+  transform: none;
+}
+
+// ==========================================================================
+// HERO — Call to action and animation
+// ==========================================================================
+
+.hero .gold-button {
+  margin-top: 30px;
+  min-width: 220px;
+}
+
+.hero-feather {
+  width: 260px;
+  max-height: 355px;
+  object-fit: contain;
+  margin: auto;
+  animation: feather-float 7s ease-in-out infinite;
+}
+
+@keyframes feather-float {
+  50% {
+    transform: translateY(-9px) rotate(2deg);
+  }
+}
+
+// ==========================================================================
+// FEATURES — Three-column feature strip
+// ==========================================================================
+
+.feature-section {
+  margin: 20px 0 0;
+}
+
+.feature-section>.eyebrow {
+  text-align: center;
+  font-size: 20px;
+}
+
+.feature-strip {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding: 25px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--gold);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 0 15px;
+  border-right: 1px solid var(--gold);
+}
+
+.feature:last-child {
+  border-right: 0;
+}
+
+.feature img {
+  width: 108px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.feature p {
+  font-size: 21px;
+  font-style: normal;
+  text-align: center;
+  margin: 0;
+}
+
+// ==========================================================================
+// COMPETITION — Introduction and layout
+// ==========================================================================
+
+.competition-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  align-items: center;
+  padding: 62px 25px;
+  border-bottom: 1px solid var(--line);
+}
+
+.competition-copy {
+  text-align: center;
+}
+
+.competition-copy h2 {
+  font-size: 36px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 15px;
+}
+
+.competition-copy p {
+  font-size: 18px;
+  font-style: normal;
+}
+
+// ==========================================================================
+// SHARED BUTTONS — Text button
+// ==========================================================================
+
+.text-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: inherit;
+}
+
+.competition-copy .text-button {
+  font-size: 17px;
+  font-style: normal;
+}
+
+// ==========================================================================
+// LOGIN FORM — Parchment panel and fields
+// ==========================================================================
+
+.parchment {
+  position: relative;
+  background: #eddfba;
+  box-shadow: inset 0 0 20px #9b7233a1,0 0 0 3px #c6a269,0 0 0 5px #eddfba;
+  border: 1px solid #a7834d;
+  border-radius: 10px 7px 13px 6px;
+  color: #353f2c;
+  padding: 23px 25px;
+}
+
+.parchment::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid #bb9758a8;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.login-form h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-form .small {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.form-rules {
+  font-size: 15px;
+  max-width: 80%;
+}
+
+.form-rules strong {
+  font-weight: 500;
+  color: #87582c;
+}
+
+.form-sleigh {
+  position: absolute;
+  right: 15px;
+  top: 54px;
+  width: 84px;
+  opacity: .8;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.form-row input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #a88950;
+  border-radius: 4px;
+  background: transparent;
+  padding: 7px 10px;
+  color: inherit;
+  font-size: 17px;
+}
+
+.form-row input::placeholder {
+  color: #aa8654;
+  font-style: normal;
+}
+
+.form-row .gold-button {
+  min-width: 90px;
+  min-height: 36px;
+  font-size: 16px;
+  padding: 6px 14px;
+}
+
+.prototype-note {
+  font-family: Inter,sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  margin: 12px 0 0;
+  opacity: .8;
+}
+
+// ==========================================================================
+// CALENDAR — Section layout
+// ==========================================================================
+
+.calendar-section {
+  position: relative;
+  padding: 0 20px 20px;
+  scroll-margin-top: 20px;
+}
+
+// ==========================================================================
+// MAILBOX — Sticky toolbar and copy
+// ==========================================================================
+
+.mailbox-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  max-width: 620px;
+  margin: 32px auto 0;
+  padding: 12px 24px 8px;
+  background: #082d23f2;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gold);
+  border-radius: 0 0 12px 12px;
+}
+
+.mailbox-copy {
+  text-align: center;
+}
+
+.mailbox-copy>p {
+  font-size: 16px;
+  font-style: normal;
+  margin: 7px 0 0;
+  max-width: 350px;
+}
+
+.mailbox-copy>.text-button {
+  font-size: 19px;
+}
+
+// ==========================================================================
+// TICKETS — Counter, number and ticket image
+// ==========================================================================
+
+.ticket-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--gold);
+  outline: 1px solid #bfa17344;
+  outline-offset: 4px;
+  padding: 5px 14px;
+  font-size: 21px;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.ticket-number {
+  border-left: 1px solid var(--gold);
+  padding-left: 17px;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+}
+
+.ticket-image {
+  display: block;
+  width: 70px;
+  height: 25px;
+  position: relative;
+  overflow: visible;
+}
+
+.ticket-image img {
+  position: absolute;
+  width: 30px;
+  height: 70px;
+  max-width: none;
+  object-fit: contain;
+  left: 20px;
+  top: -22px;
+  transform: rotate(90deg);
+}
+
+.ticket-counter.compact {
+  font-size: 14px;
+  border: 0;
+  outline: 0;
+  gap: 8px;
+  padding: 0;
+}
+
+.compact .ticket-number {
+  padding-left: 8px;
+}
+
+// ==========================================================================
+// MAILBOX — Button, drop feedback and animation
+// ==========================================================================
+
+.mailbox {
+  position: relative;
+  flex: 0 0 78px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  transition: filter .2s,transform .2s;
+}
+
+.mailbox img {
+  width: 78px;
+  height: 112px;
+  object-fit: contain;
+}
+
+.mailbox-plus {
+  position: absolute;
+  top: 8px;
+  right: -12px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  color: #08271d;
+  font: 500 16px/29px Inter,sans-serif;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.active .mailbox-plus,.drop-ready .mailbox-plus {
+  opacity: 1;
+}
+
+.drop-ready {
+  filter: drop-shadow(0 0 12px #f2da9b);
+  transform: scale(1.08);
+}
+
+.receiving {
+  animation: mailbox-nod .65s ease;
+}
+
+@keyframes mailbox-nod {
+  30% {
+    transform: rotate(-5deg);
+  }
+
+  65% {
+    transform: rotate(4deg);
+  }
+}
+
+// ==========================================================================
+// CALENDAR — Introduction, messages and grid
+// ==========================================================================
+
+.calendar-intro {
+  text-align: center;
+  padding: 48px 0 0;
+}
+
+.calendar-intro h2 {
+  margin-bottom: 30px;
+}
+
+.calendar-intro p {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--gold-light);
+  font-style: normal;
+  font-size: 21px;
+}
+
+.calendar-message {
+  text-align: center;
+  min-height: 46px;
+  margin: 22px 0;
+  font-size: 16px;
+  opacity: .9;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(6,minmax(0,1fr));
+  gap: 23px;
+}
+
+.door-slot {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1;
+  scroll-margin-top: 155px;
+}
+
+// ==========================================================================
+// CALENDAR DOORS — Hover labels
+// ==========================================================================
+
+.door-hover-label {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  z-index: 3;
+  width: max-content;
+  max-width: calc(100% - 8px);
+  transform: translateX(-50%);
+  padding: 5px 8px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  background: #062a1f;
+  color: var(--cream);
+  font-size: clamp(12px, 1.2vw, 16px);
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.door-slot:hover .door-hover-label,
+.door-slot:focus-within .door-hover-label {
+  opacity: 1;
+}
+
+// ==========================================================================
+// CALENDAR DOORS — Base lid styling
+// ==========================================================================
+
+.calendar-door {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(5,35,25,.57);
+  border: 1px solid #bfa1734a;
+  padding: 10px;
+  isolation: isolate;
+  transition: background .2s,box-shadow .2s;
+}
+
+.calendar-door::before,.calendar-door::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--gold);
+  clip-path: polygon(0 0,100% 0,100% 78%,88% 78%,88% 100%,0 100%);
+  pointer-events: none;
+  opacity: .9;
+}
+
+.calendar-door::after {
+  inset: 11px;
+  opacity: .65;
+}
+
+.calendar-door:hover {
+  background: #123c2c;
+}
+
+// ==========================================================================
+// CALENDAR DOORS — Full WebP lids, sizing and hover effect
+// ==========================================================================
+
+.calendar-door[data-day] {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  transform: scale(1.14);
+}
+
+.calendar-door[data-day]:hover .door-art,
+.calendar-door[data-day]:focus-visible .door-art {
+  filter: brightness(1.25);
+}
+
+.calendar-door[data-day]::before,
+.calendar-door[data-day]::after,
+.calendar-door[data-day] .door-star,
+.calendar-door[data-day] .door-number,
+.calendar-door[data-day] .door-notch {
+  display: none;
+}
+
+.calendar-door[data-day] .door-art {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 1;
+  transition: filter .2s;
+}
+
+// ==========================================================================
+// CALENDAR DOORS — Interaction states and decorative elements
+// ==========================================================================
+
+.openable .calendar-door {
+  touch-action: none;
+}
+
+.calendar-door.selected {
+  box-shadow: 0 0 0 2px var(--gold-light),0 0 22px #c6aa6b44;
+}
+
+.calendar-door.being-dragged {
+  opacity: .2;
+}
+
+.door-art {
+  position: absolute;
+  inset: 16% 10% 12% 20%;
+  width: 70%;
+  height: 72%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.door-number {
+  position: absolute;
+  bottom: 5px;
+  left: 13px;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--gold-light);
+  text-shadow: 0 2px 2px #08271e;
+}
+
+.door-star {
+  position: absolute;
+  left: 4px;
+  top: -8px;
+  z-index: 2;
+  font-size: 26px;
+  color: var(--gold-light);
+}
+
+.door-notch {
+  position: absolute;
+  right: -1px;
+  top: 47%;
+  width: 8px;
+  height: 16px;
+  background: var(--gold-light);
+  clip-path: polygon(100% 0,0 50%,100% 100%);
+}
+
+.lock-hint {
+  position: absolute;
+  right: 10px;
+  bottom: 11px;
+  font: 9px Inter,sans-serif;
+  opacity: 0;
+  color: #dbc99f;
+}
+
+.locked .calendar-door:hover .lock-hint,.locked .calendar-door:focus-visible .lock-hint {
+  opacity: 1;
+}
+
+.locked .door-art {
+  opacity: .8;
+}
+
+.today .calendar-door {
+  box-shadow: 0 0 0 1px var(--gold),0 0 24px #d9bd6d2b;
+}
+
+.today-spark {
+  position: absolute;
+  right: -12px;
+  top: -20px;
+  font-size: 42px;
+  color: #fbe7ad;
+  text-shadow: 0 0 12px #f7ce64;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: .35;
+  }
+}
+
+// ==========================================================================
+// CALENDAR DOORS — Opened content and earned tickets
+// ==========================================================================
+
+.opened-door {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid var(--line);
+  background: #06291d66;
+  padding: 5px;
+}
+
+.opened-date {
+  font-size: 12px;
+  color: var(--gold-light);
+}
+
+.opened-door p {
+  font-size: 18px;
+  font-style: normal;
+  color: var(--gold-light);
+  margin: 2px 0;
+}
+
+.daily-earned {
+  font-size: 28px;
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+.daily-earned small {
+  font-size: 15px;
+}
+
+.earned-details {
+  font-size: 12px;
+  line-height: 1.25;
+  margin: 4px 0 8px;
+}
+
+.opened-door a {
+  font-size: 15px;
+}
+
+.opened-star {
+  color: var(--gold);
+  font-size: 20px;
+  line-height: 1;
+}
+
+// ==========================================================================
+// CALENDAR DOORS — Dragged lid and posting animation
+// ==========================================================================
+
+.drag-lid {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translate(-50%,-50%) rotate(-7deg);
+  width: 100px;
+  height: 105px;
+  background: #0d3525;
+  border: 2px double var(--gold);
+  box-shadow: 0 12px 25px #0008;
+  padding: 10px;
+}
+
+.drag-lid img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  margin: auto;
+}
+
+.drag-lid span {
+  position: absolute;
+  left: 8px;
+  bottom: 0;
+  color: var(--gold);
+}
+
+.drag-lid[data-day] {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.drag-lid[data-day] img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.drag-lid[data-day] span {
+  display: none;
+}
+
+.drag-lid.posting {
+  transition: left .55s ease-in,top .55s ease-in,transform .55s ease-in,opacity .55s ease-in;
+  transform: translate(-50%,-50%) scale(.04) rotate(12deg);
+  opacity: 0;
+}
+
+// ==========================================================================
+// BEDTIME — Illustration and quote
+// ==========================================================================
+
+.bedtime-section {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.bedtime-section img {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+}
+
+.bedtime-section blockquote {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
+  font-style: italic;
+  margin: 0 0 0 20px;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.bedtime-section cite {
+  font-style: normal;
+  color: var(--gold);
+  font-size: 18px;
+}
+
+// ==========================================================================
+// FOOTER — Branding, links and copyright
+// ==========================================================================
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 25px;
+  padding-bottom: 40px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 80px 40px;
+}
+
+.footer-brand {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  flex: 0 1 220px;
+  text-decoration: none;
+}
+
+.footer-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footer-top nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  font: 13px Inter,sans-serif;
+}
+
+.footer-top nav a,.footer-top nav button {
+  background: none;
+  border: 0;
+  text-decoration: none;
+  font: inherit;
+}
+
+.footer-top nav button:hover {
+  color: var(--gold-light);
+}
+
+.copyright {
+  display: block;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 13px;
+}
+
+// ==========================================================================
+// DAILY PAGE — Layout, heading and section symbol
+// ==========================================================================
+
+.daily-page {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.daily-hero {
+  text-align: center;
+  margin: 40px 0 45px;
+}
+
+.daily-hero .eyebrow {
+  margin-bottom: 7px;
+}
+
+.daily-hero h1 {
+  font-size: 64px;
+  font-style: normal;
+  margin: 0;
+}
+
+.daily-hero>p:last-child {
+  font-size: 22px;
+}
+
+.section-symbol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 25px auto 40px;
+}
+
+.section-symbol img {
+  width: 100px;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+.section-symbol span {
+  font-style: normal;
+  border-left: 1px solid var(--gold);
+  padding-left: 30px;
+  font-size: 22px;
+}
+
+// ==========================================================================
+// STORY — Chapter tabs, pages and illustrations
+// ==========================================================================
+
+.story-book {
+  position: relative;
+  padding-left: 27px;
+}
+
+.chapter-tabs {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 29px;
+}
+
+.chapter-tabs a,.chapter-tabs span {
+  border: 1px solid var(--gold);
+  border-right: 0;
+  line-height: 1.3;
+  min-height: 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--gold);
+}
+
+.chapter-tabs [aria-current] {
+  background: #e8d9b6;
+  color: #3e4c30;
+  font-weight: 600;
+}
+
+.chapter-tabs span {
+  opacity: .35;
+}
+
+.story-page {
+  position: relative;
+  background: #f2e6cb;
+  color: #5b4932;
+  padding: 38px 44px 30px;
+  box-shadow: inset 0 0 50px #b6935550,0 10px 35px #00190d50;
+}
+
+.story-page::before,.story-page::after {
+  content: '';
+  position: absolute;
+  inset: 15px;
+  border: 1px solid #bc9b66;
+  pointer-events: none;
+}
+
+.story-page::after {
+  inset: 19px;
+  border-color: #c3aa7b;
+}
+
+.story-page header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.story-page header p {
+  font-size: 27px;
+  margin: 0;
+}
+
+.ornament {
+  display: block;
+  font-size: 26px;
+  line-height: 1.1;
+  color: #b08a4a;
+  text-align: center;
+}
+
+.story-page h2 {
+  font-size: 34px;
+  font-style: normal;
+  margin: 7px 0 0;
+}
+
+.story-text {
+  font-family: 'Crimson Text',Georgia,serif;
+  font-size: 22px;
+  line-height: 1.42;
+  display: flow-root;
+}
+
+.story-text p {
+  margin: 0 0 9px;
+}
+
+.first-paragraph::first-letter {
+  float: left;
+  font-size: 64px;
+  line-height: .8;
+  padding: 8px 6px 0 0;
+  color: #98723b;
+}
+
+.story-illustration {
+  float: left;
+  width: 30%;
+  max-height: 175px;
+  object-fit: contain;
+  margin: 12px 23px 12px 0;
+  filter: sepia(.27) saturate(.65);
+}
+
+.story-page>.ornament {
+  clear: both;
+  margin-top: 20px;
+}
+
+// ==========================================================================
+// AUDIO — Playback controls and caption
+// ==========================================================================
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 25px 0 0 26px;
+}
+
+.audio-play,.audio-stop {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  color: var(--gold);
+}
+
+.audio-player progress {
+  width: 100%;
+  height: 15px;
+  accent-color: var(--gold);
+}
+
+.audio-caption {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 10px;
+  opacity: .8;
+}
+
+// ==========================================================================
+// DAILY SECTIONS — Shared puzzle, activity and quiz layout
+// ==========================================================================
+
+.puzzle-section,.activity-section,.quiz-section {
+  border-top: 1px solid var(--gold);
+  padding: 45px 8px 35px;
+  margin-top: 35px;
+  text-align: center;
+}
+
+// ==========================================================================
+// PUZZLE — Instructions, board and progress
+// ==========================================================================
+
+.puzzle-section>h2 {
+  margin-bottom: 20px;
+}
+
+.puzzle-instructions {
+  font-size: 17px;
+  max-width: 470px;
+  margin: 0 auto 25px;
+}
+
+.puzzle-board {
+  aspect-ratio: 3/2;
+  position: relative;
+  width: 100%;
+  margin: auto;
+  isolation: isolate;
+}
+
+.puzzle-outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.placed-piece {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+}
+
+.puzzle-targets {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-template-rows: repeat(4,1fr);
+  position: absolute;
+  inset: 0;
+}
+
+.puzzle-targets button {
+  border: 0;
+  background: none;
+  padding: 0;
+  min-width: 0;
+}
+
+.puzzle-targets button:hover:not([aria-disabled="true"]) {
+  background: #bfa17316;
+}
+
+.keyboard-help {
+  max-width: 650px;
+  margin: 18px auto;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: #062a1f;
+  color: var(--cream);
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.puzzle-targets button:focus-visible::after {
+  content: attr(data-slot);
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--forest);
+  color: var(--cream);
+}
+
+.puzzle-targets button:focus-visible {
+  background: #bfa17344;
+  outline-offset: -5px;
+}
+
+.puzzle-board.complete {
+  box-shadow: 0 0 25px #bfa17355;
+}
+
+.puzzle-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin: 18px 0;
+  font-size: 17px;
+  color: var(--gold-light);
+}
+
+.puzzle-progress progress {
+  flex: 1;
+  height: 5px;
+  accent-color: var(--gold);
+}
+
+// ==========================================================================
+// PUZZLE — Piece carousel, dragging and success state
+// ==========================================================================
+
+.piece-carousel {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  gap: 8px;
+}
+
+.piece-tray {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 8px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+  flex: 1;
+}
+
+.puzzle-piece {
+  flex: 0 0 95px;
+  min-width: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px;
+  touch-action: none;
+  scroll-snap-align: start;
+}
+
+.puzzle-piece img {
+  width: 100%;
+  height: 85px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.puzzle-piece.selected {
+  border-color: var(--gold);
+  background: #bfa17312;
+}
+
+.carousel-arrow {
+  border: 0;
+  background: none;
+  padding: 0 5px;
+  color: var(--gold);
+  font-size: 37px;
+}
+
+.puzzle-message {
+  font-size: 17px;
+  min-height: 25px;
+  margin-top: 12px;
+}
+
+.drag-piece {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  width: 105px;
+  max-height: 110px;
+  object-fit: contain;
+  transform: translate(-50%,-50%);
+  filter: drop-shadow(0 8px 8px #0008);
+}
+
+.puzzle-success {
+  padding: 15px 10px;
+}
+
+.puzzle-success>span {
+  font-size: 50px;
+  color: var(--gold);
+}
+
+.puzzle-success h3 {
+  margin: 5px 0 15px;
+}
+
+// ==========================================================================
+// ACTIVITY — Duration and activity card
+// ==========================================================================
+
+.activity-time {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.activity-card {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 35px;
+  border: 1px solid var(--line);
+  padding: 28px;
+}
+
+.activity-card>img {
+  margin: auto;
+  width: 130px;
+  max-height: 170px;
+  object-fit: contain;
+}
+
+.activity-card h3 {
+  font-size: 22px;
+  color: var(--gold-light);
+  margin: 0 0 10px;
+}
+
+.activity-card p {
+  font-size: 20px;
+}
+
+// ==========================================================================
+// QUIZ — Heading, answers, results and tickets
+// ==========================================================================
+
+.quiz-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 25px;
+}
+
+.quiz-heading h2 {
+  margin: 0;
+}
+
+.quiz-heading img {
+  width: 98px;
+}
+
+.quiz-section>p {
+  font-size: 23px;
+}
+
+.answer-link {
+  display: inline-block;
+  margin: 15px 0 30px;
+  font-size: 22px;
+}
+
+.quiz-section>.ticket-counter {
+  margin-bottom: 35px;
+}
+
+.guest-quiz-note {
+  font-size: 16px!important;
+  max-width: 480px;
+  margin: 0 auto 30px;
+}
+
+.guest-quiz-note .text-button {
+  color: var(--gold-light);
+}
+
+.quiz-card {
+  position: relative;
+  border: 1px solid var(--gold);
+  outline: 1px solid var(--gold);
+  outline-offset: 6px;
+  padding: 40px 35px 25px;
+  margin: 18px 10px 0;
+}
+
+.quiz-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid #bfa17370;
+  pointer-events: none;
+}
+
+.quiz-card fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.quiz-card legend {
+  text-align: center;
+  width: 100%;
+  padding: 0 20px 25px;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 18px 0 32px;
+}
+
+.quiz-option {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quiz-option input {
+  appearance: none;
+  flex: 0 0 21px;
+  width: 21px;
+  height: 21px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  margin: 0;
+}
+
+.quiz-option input:checked {
+  background: var(--gold);
+  box-shadow: inset 0 0 0 4px var(--forest);
+}
+
+.quiz-option>span {
+  display: block;
+  border: 1px solid var(--gold);
+  padding: 9px 14px;
+  flex: 1;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.quiz-option:has(input:checked)>span {
+  background: #bfa17317;
+}
+
+.quiz-option.correct>span {
+  border-color: #c9d5a2;
+  background: #a6c38222;
+}
+
+.quiz-option.incorrect>span {
+  border-color: #c09273;
+}
+
+.quiz-card fieldset:disabled .quiz-option {
+  cursor: default;
+}
+
+.quiz-card .gold-button {
+  margin: 0 auto;
+}
+
+.quiz-card>.small {
+  margin: 14px 0 0;
+}
+
+.quiz-result {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.quiz-result h3 {
+  color: var(--gold-light);
+}
+
+.quiz-result p {
+  font-size: 19px;
+}
+
+.quiz-result .result-tickets {
+  font-size: 25px;
+  color: var(--gold-light);
+}
+
+// ==========================================================================
+// DAILY PAGE — Return navigation
+// ==========================================================================
+
+.day-return {
+  text-align: center;
+  margin: 35px 0 55px;
+}
+
+.day-return p {
+  margin-bottom: 0;
+}
+
+// ==========================================================================
+// ACCESS GATE — Unavailable day
+// ==========================================================================
+
+.gate {
+  text-align: center;
+  min-height: 500px;
+  padding: 100px 15px;
+}
+
+.gate h1 {
+  font-size: 50px;
+}
+
+.gate>img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  margin: 0 auto 25px;
+}
+
+// ==========================================================================
+// MODALS — Dialogs, forms and actions
+// ==========================================================================
+
+.modal {
+  max-width: 560px;
+  width: calc(100% - 36px);
+  border: 1px solid var(--gold);
+  background: #0a3025;
+  color: var(--cream);
+  padding: 0;
+  box-shadow: 0 25px 100px #0009;
+}
+
+.modal::backdrop {
+  background: #00160bd9;
+  backdrop-filter: blur(4px);
+}
+
+.modal-inner {
+  padding: 42px 34px 30px;
+}
+
+.modal h2 {
+  font-size: 34px;
+}
+
+.modal p,.modal li {
+  font-size: 20px;
+}
+
+.modal .small {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 14px;
+  top: 5px;
+  border: 0;
+  background: none;
+  font-size: 32px;
+  color: var(--gold);
+}
+
+.modal .form-row input {
+  background: #f2e9cd;
+  color: #263c2c;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.modal .prototype-note {
+  font-size: 12px;
+}
+
+// ==========================================================================
+// PROTOTYPE — Controls and settings panel
+// ==========================================================================
+
+.prototype-controls {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 100;
+  background: #f1ead8;
+  color: #26372d;
+  border: 1px solid #bfac86;
+  border-radius: 7px;
+  font: 12px/1.5 Inter,sans-serif;
+  box-shadow: 0 4px 25px #0003;
+  max-width: calc(100vw - 28px);
+}
+
+.prototype-controls summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  padding: 8px 13px;
+  list-style: none;
+}
+
+.prototype-controls summary::-webkit-details-marker {
+  display: none;
+}
+
+.prototype-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #61846a;
+}
+
+.control-chevron {
+  margin-left: 10px;
+}
+
+.prototype-controls[open] .control-chevron {
+  transform: rotate(180deg);
+}
+
+.prototype-panel {
+  border-top: 1px solid #c9bb9a;
+  padding: 18px;
+  width: 310px;
+  max-width: 100%;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.prototype-panel h2 {
+  font: 500 17px Inter,sans-serif;
+  margin: 0 0 12px;
+}
+
+.prototype-panel p {
+  margin-bottom: 15px;
+}
+
+.prototype-panel label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.prototype-panel input {
+  width: 100%;
+  border: 1px solid #aaa084;
+  border-radius: 4px;
+  background: #fffaf0;
+  color: #26372d;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.prototype-panel button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  margin: 5px 0;
+  background: #fffcf3;
+  border: 1px solid #c3b99c;
+  border-radius: 4px;
+}
+
+.prototype-panel .current-profile {
+  font-size: 11px;
+  margin: 15px 0 8px;
+  overflow-wrap: anywhere;
+}
+
+.prototype-panel small {
+  display: block;
+  margin-top: 13px;
+  font-size: 10px;
+}
+
+// ==========================================================================
+// NOTICES — Storage warning
+// ==========================================================================
+
+.storage-warning {
+  position: relative;
+  z-index: 101;
+  background: #eadbb7;
+  color: #413920;
+  padding: 10px 20px;
+  text-align: center;
+  margin: 0;
+  font: 13px/1.5 Inter,sans-serif;
+}
+
+// ==========================================================================
+// ACCESSIBILITY — Skip navigation
+// ==========================================================================
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  z-index: 2000;
+  background: var(--cream);
+  color: var(--forest);
+  padding: 10px;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+// ==========================================================================
+// DECORATION — Animated candles
+// ==========================================================================
+
+.candles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.candles i {
+  position: absolute;
+  width: 22px;
+  height: 60px;
+  border-radius: 50%;
+  background: #e8c16d;
+  filter: blur(16px);
+  opacity: 3;
+  left: 86%;
+  top: 280px;
+}
+
+.candles i:nth-child(2) {
+  left: 5%;
+  top: 1100px;
+}
+
+.candles i:nth-child(3) {
+  left: 94%;
+  top: 1750px;
+}
+
+.candles i:nth-child(4) {
+  left: 3%;
+  top: 2450px;
+}
+
+.candles i:nth-child(5) {
+  left: 90%;
+  top: 3100px;
+}
+
+
+// ==========================================================================
+// RESPONSIVE — Tablet and smaller desktop (up to 1000px)
+// ==========================================================================
+
+@media(max-width:1000px) {
+  .site-shell {
+    padding: 0 30px;
+  }
+
+  .hero {
+    padding: 25px 25px 35px;
+  }
+
+  .hero-feather {
+    width: 220px;
+  }
+
+  .hero-subtitle {
+    white-space: normal;
+  }
+
+  .feature {
+    gap: 12px;
+    padding: 0 10px;
+  }
+
+  .feature img {
+    width: 80px;
+  }
+
+  .feature p {
+    font-size: 19px;
+  }
+
+  .competition-section {
+    gap: 35px;
+    padding: 48px 5px;
+  }
+
+  .calendar-grid {
+    gap: 17px;
+  }
+
+  .calendar-section {
+    padding: 0 0 20px;
+  }
+
+  .door-number {
+    font-size: 28px;
+  }
+
+  .daily-earned {
+    font-size: 23px;
+  }
+
+  .opened-date {
+    font-size: 10px;
+  }
+
+  .earned-details {
+    font-size: 10px;
+  }
+
+  .opened-door p {
+    font-size: 15px;
+  }
+
+  .opened-door a {
+    font-size: 13px;
+  }
+
+  .bedtime-section blockquote {
+    font-size: 17px;
+  }
+}
+
+// ==========================================================================
+// RESPONSIVE — Mobile (up to 700px)
+// ==========================================================================
+
+@media(max-width:700px) {
+  body {
+    font-size: 19px;
+  }
+
+  .site-shell {
+    padding: 0 22px;
+  }
+
+  .site-header {
+    min-height: 101px;
+    padding-top: 18px;
+  }
+
+  .site-header::before {
+    top: 32px;
+    background: linear-gradient(to right,var(--line) 0 25%,transparent 25% 75%,var(--line) 75% 100%);
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .ringsted-wordmark {
+    font-size: 15px;
+    letter-spacing: -.4px;
+  }
+
+  .brand-divider {
+    height: 18px;
+  }
+
+  .partner small {
+    font-size: 7px;
+  }
+
+  .partner strong {
+    font-size: 18px;
+  }
+
+  .header-actions {
+    top: 53px;
+    gap: 10px;
+  }
+
+  .outline-button {
+    font-size: 14px;
+    padding: 1px 17px;
+    min-height: 27px;
+  }
+
+  .back-link {
+    top: 60px;
+    font-size: 15px;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 0;
+    min-height: 0;
+  }
+
+  .hero-copy {
+    display: contents;
+  }
+
+  .hero .eyebrow {
+    order: 0;
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 {
+    order: 1;
+    font-size: 62px;
+    letter-spacing: -1.4px;
+    margin: 0 0 12px;
+  }
+
+  .hero h1::after {
+    margin-top: 9px;
+  }
+
+  .hero-subtitle {
+    order: 2;
+    font-size: 19px;
+    margin-bottom: 15px;
+  }
+
+  .hero-feather {
+    order: 3;
+    height: 190px;
+    width: 175px;
+  }
+
+  .hero .gold-button {
+    order: 4;
+    margin: 21px 0 25px;
+    min-width: 190px;
+    min-height: 36px;
+    font-size: 19px;
+  }
+
+  .feature-section {
+    margin-top: 5px;
+  }
+
+  .feature-section>.eyebrow {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+
+  .feature-strip {
+    padding: 0 0 24px;
+    border-top: 0;
+  }
+
+  .feature {
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 8px;
+  }
+
+  .feature img {
+    width: 82px;
+    height: 50px;
+  }
+
+  .feature p {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .competition-section {
+    display: flex;
+    flex-direction: column;
+    padding: 26px 4px 35px;
+    gap: 16px;
+  }
+
+  .competition-copy {
+    display: contents;
+  }
+
+  .competition-copy h2 {
+    order: 0;
+    border: 0;
+    padding: 0;
+    margin: 0 0 17px;
+    font-size: 29px;
+  }
+
+  .competition-section .parchment {
+    order: 1;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .competition-copy p {
+    order: 2;
+    font-size: 16px;
+    margin: 12px 0 0;
+  }
+
+  .competition-copy>.text-button {
+    order: 3;
+    font-size: 15px;
+  }
+
+  .parchment {
+    padding: 22px 23px;
+  }
+
+  .login-form h3 {
+    font-size: 20px;
+  }
+
+  .form-rules {
+    font-size: 14px;
+  }
+
+  .form-sleigh {
+    width: 65px;
+    right: 12px;
+    top: 68px;
+  }
+
+  .login-form .small {
+    font-size: 13px;
+  }
+
+  .form-row input {
+    font-size: 15px;
+    padding: 5px 7px;
+  }
+
+  .form-row .gold-button {
+    min-width: 70px;
+    font-size: 15px;
+    padding: 4px 10px;
+  }
+
+  .prototype-note {
+    font-size: 9px;
+  }
+
+  .mailbox-bar {
+    top: 0;
+    gap: 14px;
+    margin: 23px -7px 0;
+    padding: 8px 12px;
+    max-width: calc(100% + 14px);
+  }
+
+  .mailbox-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .mailbox {
+    flex-basis: 59px;
+  }
+
+  .mailbox img {
+    width: 59px;
+    height: 88px;
+  }
+
+  .mailbox-copy>p {
+    font-size: 14px;
+    line-height: 1.3;
+    margin-top: 9px;
+  }
+
+  .mailbox-copy>.text-button {
+    font-size: 17px;
+  }
+
+  .ticket-counter {
+    font-size: 18px;
+    gap: 12px;
+    padding: 4px 10px;
+  }
+
+  .ticket-number {
+    padding-left: 12px;
+  }
+
+  .ticket-image {
+    width: 54px;
+  }
+
+  .ticket-image img {
+    left: 12px;
+  }
+
+  .ticket-counter.compact {
+    font-size: 12px;
+  }
+
+  .calendar-intro {
+    padding-top: 32px;
+  }
+
+  .calendar-intro h2 {
+    font-size: 29px;
+    max-width: 300px;
+    margin: 0 auto 24px;
+  }
+
+  .calendar-intro p {
+    font-size: 18px;
+    max-width: 350px;
+  }
+
+  .calendar-message {
+    font-size: 14px;
+    line-height: 1.35;
+    margin: 16px auto 20px;
+    min-height: 38px;
+    max-width: 300px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 18px 15px;
+    max-width: 440px;
+    margin: auto;
+  }
+
+  .door-number {
+    font-size: 30px;
+    left: 9px;
+    bottom: 3px;
+  }
+
+  .calendar-door {
+    padding: 6px;
+  }
+
+  .calendar-door::before {
+    inset: 5px;
+  }
+
+  .calendar-door::after {
+    inset: 8px;
+  }
+
+  .door-star {
+    font-size: 23px;
+    top: -7px;
+    left: 1px;
+  }
+
+  .door-art {
+    inset: 16% 7% 13% 18%;
+    width: 75%;
+    height: 71%;
+  }
+
+  .today-spark {
+    right: -9px;
+    top: -15px;
+    font-size: 34px;
+  }
+
+  .lock-hint {
+    font-size: 8px;
+    right: 7px;
+    bottom: 9px;
+  }
+
+  .opened-date {
+    font-size: 10px;
+  }
+
+  .opened-door p {
+    font-size: 15px;
+  }
+
+  .daily-earned {
+    font-size: 22px;
+  }
+
+  .daily-earned small {
+    font-size: 13px;
+  }
+
+  .earned-details {
+    font-size: 10px;
+    margin: 3px 0 4px;
+  }
+
+  .opened-door a {
+    font-size: 13px;
+  }
+
+  .opened-star {
+    font-size: 15px;
+  }
+
+  .bedtime-section {
+    display: flex;
+    flex-direction: column;
+    margin: 35px -22px 0;
+  }
+
+  .bedtime-section blockquote {
+    margin: 0 20px -7px;
+    font-size: 18px;
+    line-height: 1.8;
+    align-self: flex-end;
+    z-index: 1;
+  }
+
+  .bedtime-section cite {
+    font-size: 15px;
+    display: block;
+    text-align: right;
+    margin-right: 5px;
+  }
+
+  .bedtime-section img {
+    width: 100%;
+  }
+
+  .site-footer {
+    margin-top: 12px;
+    padding-bottom: 56px;
+  }
+
+  .footer-top {
+    padding: 0 7px 25px;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    width: 170px;
+    flex-basis: 170px;
+  }
+
+  .footer-top nav {
+    font-size: 11px;
+    gap: 12px;
+  }
+
+  .copyright {
+    font-size: 11px;
+    padding-top: 12px;
+  }
+
+  .daily-hero {
+    margin: 20px 0 30px;
+  }
+
+  .daily-hero .eyebrow {
+    font-size: 19px;
+  }
+
+  .daily-hero h1 {
+    font-size: 47px;
+  }
+
+  .daily-hero>p:last-child {
+    font-size: 19px;
+  }
+
+  .section-symbol {
+    gap: 22px;
+    margin: 20px auto 30px;
+  }
+
+  .section-symbol img {
+    width: 85px;
+    max-height: 52px;
+  }
+
+  .section-symbol span {
+    font-size: 19px;
+    padding-left: 23px;
+  }
+
+  .story-book {
+    margin-left: -9px;
+    margin-right: -4px;
+    padding-left: 22px;
+  }
+
+  .chapter-tabs {
+    width: 23px;
+    top: 10px;
+  }
+
+  .chapter-tabs a,.chapter-tabs span {
+    font-size: 16px;
+    min-height: 23px;
+    line-height: 22px;
+  }
+
+  .story-page {
+    padding: 28px 24px 25px;
+  }
+
+  .story-page::before {
+    inset: 10px;
+  }
+
+  .story-page::after {
+    inset: 13px;
+  }
+
+  .story-page header {
+    margin-bottom: 25px;
+  }
+
+  .story-page header p {
+    font-size: 24px;
+  }
+
+  .story-page h2 {
+    font-size: 28px;
+  }
+
+  .story-text {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .first-paragraph::first-letter {
+    font-size: 54px;
+  }
+
+  .story-illustration {
+    width: 32%;
+    margin: 12px 14px 10px 0;
+  }
+
+  .audio-player {
+    margin-left: 16px;
+    gap: 14px;
+  }
+
+  .audio-caption {
+    font-size: 13px;
+  }
+
+  .puzzle-section,.activity-section,.quiz-section {
+    padding: 30px 0;
+    margin-top: 25px;
+  }
+
+  .puzzle-section h2 {
+    font-size: 31px;
+  }
+
+  .puzzle-section>.gold {
+    font-size: 17px;
+  }
+
+  .puzzle-instructions {
+    font-size: 15px;
+  }
+
+  .piece-carousel {
+    gap: 0;
+  }
+
+  .puzzle-piece {
+    flex-basis: 69px;
+    padding: 3px;
+  }
+
+  .puzzle-piece img {
+    height: 65px;
+  }
+
+  .piece-tray {
+    gap: 8px;
+    padding: 5px;
+  }
+
+  .carousel-arrow {
+    font-size: 31px;
+    padding: 0 5px;
+  }
+
+  .puzzle-progress {
+    font-size: 15px;
+  }
+
+  .puzzle-message {
+    font-size: 15px;
+  }
+
+  .puzzle-section>.small {
+    font-size: 14px;
+  }
+
+  .drag-piece {
+    width: 75px;
+    max-height: 85px;
+  }
+
+  .activity-card {
+    grid-template-columns: 70px 1fr;
+    gap: 18px;
+    padding: 20px 15px;
+  }
+
+  .activity-card h3 {
+    font-size: 20px;
+  }
+
+  .activity-card p {
+    font-size: 18px;
+  }
+
+  .quiz-heading {
+    gap: 20px;
+  }
+
+  .quiz-heading h2 {
+    font-size: 32px;
+  }
+
+  .quiz-heading img {
+    width: 80px;
+  }
+
+  .quiz-section>p {
+    font-size: 20px;
+  }
+
+  .answer-link {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  .quiz-card {
+    padding: 30px 17px 22px;
+    margin: 18px 6px 0;
+  }
+
+  .quiz-card legend {
+    font-size: 26px;
+    padding: 0 0 18px;
+  }
+
+  .quiz-options {
+    gap: 14px;
+    margin: 12px 0 26px;
+  }
+
+  .quiz-option {
+    gap: 12px;
+  }
+
+  .quiz-option input {
+    flex-basis: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .quiz-option>span {
+    font-size: 19px;
+    padding: 7px 10px;
+  }
+
+  .quiz-result p {
+    font-size: 18px;
+  }
+
+  .quiz-card .gold-button {
+    min-width: 165px;
+  }
+
+  .day-return {
+    margin: 15px 0 35px;
+  }
+
+  .modal-inner {
+    padding: 38px 24px 25px;
+  }
+
+  .modal h2 {
+    font-size: 30px;
+  }
+
+  .modal p,.modal li {
+    font-size: 18px;
+  }
+
+  .modal .form-row {
+    flex-wrap: wrap;
+  }
+
+  .modal .form-row input {
+    min-width: 150px;
+  }
+
+  .modal .form-row .gold-button {
+    min-width: 90px;
+  }
+
+  .prototype-controls {
+    left: 8px;
+    bottom: 8px;
+  }
+
+  .prototype-controls summary {
+    font-size: 11px;
+    padding: 7px 10px;
+  }
+}
+
+// ==========================================================================
+// RESPONSIVE — Small mobile (up to 370px)
+// ==========================================================================
+
+@media(max-width:370px) {
+  .site-shell {
+    padding: 0 16px;
+  }
+
+  .hero h1 {
+    font-size: 57px;
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+  }
+
+  .calendar-grid {
+    gap: 15px 11px;
+  }
+
+  .door-number {
+    font-size: 27px;
+  }
+
+  .earned-details {
+    font-size: 9px;
+  }
+
+  .opened-door a {
+    font-size: 12px;
+  }
+
+  .ticket-counter {
+    font-size: 16px;
+    gap: 10px;
+  }
+
+  .ticket-image {
+    display: none;
+  }
+
+  .bedtime-section {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .story-text {
+    font-size: 19px;
+  }
+
+  .form-rules {
+    font-size: 13px;
+  }
+}
+
+// ==========================================================================
+// ACCESSIBILITY — Reduced motion
+// ==========================================================================
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation: none!important;
+    scroll-behavior: auto!important;
+    transition: none!important;
+  }
+}
+
+// ==========================================================================
+// RESPONSIVE — Mobile opened-door refinements (up to 700px)
+// ==========================================================================
+
+@media(max-width:700px) {
+  .opened-door {
+    padding: 5px 3px;
+  }
+
+  .opened-door:has(.daily-earned)>p {
+    display: none;
+  }
+
+  .opened-date {
+    line-height: 1.1;
+  }
+
+  .daily-earned {
+    margin-top: 3px;
+    line-height: 1;
+  }
+
+  .earned-details {
+    line-height: 1.15;
+    margin: 4px 0;
+  }
+
+  .opened-door a {
+    line-height: 1.2;
+  }
+}
+
+// ==========================================================================
+// PAGE LAYOUT — Body positioning
+// ==========================================================================
+
+body {
+  position: relative;
+}
