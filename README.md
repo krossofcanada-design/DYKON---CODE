@@ -1,6 +1,6 @@
 # Lille Fjer Christmas calendar
 
-A complete interactive study prototype built from Klaudia Ross’s supplied designs, images, React starter project, chapters, activities and quiz document.
+A complete interactive study prototype built from Klaudia Raniszewska's (Ross) supplied designs, images, React starter project, chapters, activities and quiz document.
 
 ## Run locally
 

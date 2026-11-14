@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import GoldButton from '../atoms/GoldButton';
 
+/* Renders the email signup form and its submission state. */
 export default function LoginForm({
   onLogin,
   compact = false,
@@ -13,15 +14,18 @@ export default function LoginForm({
   return (
     <form
       className={`login-form ${compact ? 'parchment' : ''}`}
-      onSubmit={async (event) => {
-        event.preventDefault();
-        setBusy(true);
-        try {
-          await onLogin(email);
-        } finally {
-          setBusy(false);
+      onSubmit={
+        /* Submits the email and disables the form while login is pending. */
+        async (event) => {
+          event.preventDefault();
+          setBusy(true);
+          try {
+            await onLogin(email);
+          } finally {
+            setBusy(false);
+          }
         }
-      }}
+      }
     >
       {compact && (
         <>
@@ -29,7 +33,7 @@ export default function LoginForm({
           <p className="small italic">
             Alle aktiviteter er også tilgængelige uden tilmelding
           </p>
-          <img className="form-sleigh" src="/assets/sleigh.webp" alt="" />
+          <img className="form-sleigh" src="/assets/illustrations/sleigh.webp" alt="" />
           <p className="form-rules">
             Få <strong>1 lod</strong> for hver dag, du åbner en låge.
             <br />
@@ -54,7 +58,10 @@ export default function LoginForm({
           autoComplete="email"
           placeholder="navn@email.com"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={
+            /* Updates the email from the input field. */
+            (event) => setEmail(event.target.value)
+          }
         />
         <GoldButton disabled={busy}>
           {busy ? 'Et øjeblik …' : compact ? 'Tilmeld' : 'Log ind'}

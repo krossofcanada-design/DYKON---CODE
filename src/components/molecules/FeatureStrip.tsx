@@ -30,17 +30,21 @@ const features = [
     ),
   },
 ];
+/* Displays the story, activity, and quiz features available behind each door. */
 export default function FeatureStrip() {
   return (
     <div className="feature-section">
       <p className="eyebrow">Bag dagens låge finder du:</p>
       <div className="feature-strip">
-        {features.map((feature) => (
-          <div className="feature" key={feature.icon}>
-            <img src={`/assets/${feature.icon}.webp`} alt="" />
-            <p>{feature.text}</p>
-          </div>
-        ))}
+        {features.map(
+          /* Renders one feature’s icon and description. */
+          (feature) => (
+            <div className="feature" key={feature.icon}>
+              <img src={`/assets/icons/${feature.icon}.webp`} alt="" />
+              <p>{feature.text}</p>
+            </div>
+          )
+        )}
       </div>
     </div>
   );

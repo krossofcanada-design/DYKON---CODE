@@ -18,6 +18,7 @@ interface PieceProps {
   onCancel: () => void;
 }
 
+/* Renders a selectable and draggable puzzle piece. */
 function Piece({
   id,
   selected,
@@ -31,7 +32,10 @@ function Piece({
     <button
       {...handlers}
       className={`puzzle-piece ${selected ? 'selected' : ''}`}
-      onClick={(event) => onSelect(event.detail === 0)}
+      onClick={
+        /* Selects the piece and identifies keyboard activation. */
+        (event) => onSelect(event.detail === 0)
+      }
       data-piece={id}
       aria-describedby="puzzle-keyboard-help"
       aria-label={`Brik ${id}`}
@@ -42,6 +46,7 @@ function Piece({
   );
 }
 
+/* Renders the puzzle and manages piece placement and keyboard navigation. */
 export default function Puzzle({ placed, profile, onLogin }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const [drag, setDrag] = useState<(Point & { id: number }) | null>(null);
@@ -58,23 +63,29 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
     10, 18, 14,
   ];
 
-  useEffect(() => {
-    if (returnFocus.current) {
-      returnFocus.current = false;
-      if (placed.length === 24) success.current?.focus();
-      else
-        tray.current
-          ?.querySelector<HTMLButtonElement>('.puzzle-piece')
-          ?.focus();
-    }
-  }, [placed]);
+  useEffect(
+    /* Restores focus after placement or focuses the completed puzzle message. */
+    () => {
+      if (returnFocus.current) {
+        returnFocus.current = false;
+        if (placed.length === 24) success.current?.focus();
+        else
+          tray.current
+            ?.querySelector<HTMLButtonElement>('.puzzle-piece')
+            ?.focus();
+      }
+    },
+    [placed]
+  );
 
+  /* Focuses a puzzle slot by its numbered position. */
   function focusSlot(index: number) {
     targets.current
       ?.querySelector<HTMLButtonElement>(`[data-slot="${index}"]`)
       ?.focus();
   }
 
+  /* Validates a piece’s slot and saves a correct placement. */
   async function place(piece: number, slot: number) {
     if (busy.current) return;
     setDrag(null);
@@ -99,6 +110,7 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
     );
   }
 
+  /* Converts a drop position into a puzzle slot and attempts placement. */
   function drop(id: number, point: Point) {
     const rect = board.current?.getBoundingClientRect();
     if (
@@ -116,6 +128,7 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
     void place(id, row * 6 + column + 1);
   }
 
+  /* Leaves the puzzle and moves focus to the daily quiz. */
   function skipPuzzle() {
     setSelected(null);
     setDrag(null);
@@ -126,30 +139,33 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
     <section
       className="puzzle-section"
       aria-labelledby="puzzle-title"
-      onKeyDown={(event) => {
-        if (event.key === 'Escape' && event.shiftKey) {
-          event.preventDefault();
-          skipPuzzle();
-          return;
+      onKeyDown={
+        /* Handles keyboard cancellation and the shortcut to skip the puzzle. */
+        (event) => {
+          if (event.key === 'Escape' && event.shiftKey) {
+            event.preventDefault();
+            skipPuzzle();
+            return;
+          }
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            if (selected !== null)
+              tray.current
+                ?.querySelector<HTMLButtonElement>(`[data-piece="${selected}"]`)
+                ?.focus();
+            setSelected(null);
+            setDrag(null);
+            setMessage('Valg annulleret. Vælg en brik.');
+          }
         }
-        if (event.key === 'Escape') {
-          event.preventDefault();
-          if (selected !== null)
-            tray.current
-              ?.querySelector<HTMLButtonElement>(`[data-piece="${selected}"]`)
-              ?.focus();
-          setSelected(null);
-          setDrag(null);
-          setMessage('Valg annulleret. Vælg en brik.');
-        }
-      }}
+      }
     >
       <h2 id="puzzle-title">Ekstra gaver på spil!</h2>
       <p className="gold italic">
         Saml dagens puslespil, og træd ind i Snedronningens eventyr.
       </p>
       <div className="section-symbol">
-        <img src="/assets/scissors.webp" alt="" />
+        <img src="/assets/icons/scissors.webp" alt="" />
         <span>
           En kreativ
           <br />
@@ -173,63 +189,78 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
       <div className={`puzzle-board ${complete ? 'complete' : ''}`} ref={board}>
         <img
           className="puzzle-outline"
-          src="/assets/puzzle-outline.webp"
+          src="/assets/puzzle/puzzle-outline.webp"
           alt=""
         />
         {puzzlePieces
-          .filter((piece) => placed.includes(piece.id))
-          .map((piece) => (
-            <img
-              key={piece.id}
-              className="placed-piece"
-              src={piece.image}
-              alt=""
-              style={{
-                left: `${(piece.x / 1536) * 100}%`,
-                top: `${(piece.y / 1024) * 100}%`,
-                width: `${(piece.width / 1536) * 100}%`,
-                height: `${(piece.height / 1024) * 100}%`,
-              }}
-            />
-          ))}
+          .filter(
+            /* Keeps only pieces already placed on the board. */
+            (piece) => placed.includes(piece.id)
+          )
+          .map(
+            /* Renders a placed piece at its position in the completed image. */
+            (piece) => (
+              <img
+                key={piece.id}
+                className="placed-piece"
+                src={piece.image}
+                alt=""
+                style={{
+                  left: `${(piece.x / 1536) * 100}%`,
+                  top: `${(piece.y / 1024) * 100}%`,
+                  width: `${(piece.width / 1536) * 100}%`,
+                  height: `${(piece.height / 1024) * 100}%`,
+                }}
+              />
+            )
+          )}
         <div className="puzzle-targets" ref={targets}>
-          {puzzlePieces.map((piece) => (
-            <button
-              key={piece.id}
-              data-slot={piece.id}
-              className={placed.includes(piece.id) ? 'filled' : ''}
-              tabIndex={
-                selected !== null && !placed.includes(piece.id) ? 0 : -1
-              }
-              aria-label={`Række ${Math.floor((piece.id - 1) / 6) + 1}, kolonne ${((piece.id - 1) % 6) + 1}${placed.includes(piece.id) ? ' – udfyldt' : ''}`}
-              aria-disabled={placed.includes(piece.id)}
-              aria-describedby="puzzle-keyboard-help"
-              onKeyDown={(event) => {
-                const offsets: Record<string, number> = {
-                  ArrowLeft: -1,
-                  ArrowRight: 1,
-                  ArrowUp: -6,
-                  ArrowDown: 6,
-                };
-                if (event.key in offsets) {
-                  event.preventDefault();
-                  focusSlot(
-                    ((piece.id - 1 + offsets[event.key] + 24) % 24) + 1
-                  );
+          {puzzlePieces.map(
+            /* Renders an accessible target slot for each puzzle piece. */
+            (piece) => (
+              <button
+                key={piece.id}
+                data-slot={piece.id}
+                className={placed.includes(piece.id) ? 'filled' : ''}
+                tabIndex={
+                  selected !== null && !placed.includes(piece.id) ? 0 : -1
                 }
-              }}
-              onClick={() => {
-                if (placed.includes(piece.id)) {
-                  setMessage(
-                    'Denne plads er allerede udfyldt. Vælg en anden plads med piletasterne.'
-                  );
-                  return;
+                aria-label={`Række ${Math.floor((piece.id - 1) / 6) + 1}, kolonne ${((piece.id - 1) % 6) + 1}${placed.includes(piece.id) ? ' – udfyldt' : ''}`}
+                aria-disabled={placed.includes(piece.id)}
+                aria-describedby="puzzle-keyboard-help"
+                onKeyDown={
+                  /* Moves focus between puzzle slots with the arrow keys. */
+                  (event) => {
+                    const offsets: Record<string, number> = {
+                      ArrowLeft: -1,
+                      ArrowRight: 1,
+                      ArrowUp: -6,
+                      ArrowDown: 6,
+                    };
+                    if (event.key in offsets) {
+                      event.preventDefault();
+                      focusSlot(
+                        ((piece.id - 1 + offsets[event.key] + 24) % 24) + 1
+                      );
+                    }
+                  }
                 }
-                if (selected !== null) void place(selected, piece.id);
-                else setMessage('Vælg først en brik nedenfor.');
-              }}
-            />
-          ))}
+                onClick={
+                  /* Attempts to place the selected piece in this slot. */
+                  () => {
+                    if (placed.includes(piece.id)) {
+                      setMessage(
+                        'Denne plads er allerede udfyldt. Vælg en anden plads med piletasterne.'
+                      );
+                      return;
+                    }
+                    if (selected !== null) void place(selected, piece.id);
+                    else setMessage('Vælg først en brik nedenfor.');
+                  }
+                }
+              />
+            )
+          )}
         </div>
       </div>
       <div className="puzzle-progress">
@@ -245,45 +276,67 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
           <button
             className="carousel-arrow"
             aria-label="Forrige brikker"
-            onClick={() =>
-              tray.current?.scrollBy({ left: -250, behavior: 'smooth' })
+            onClick={
+              /* Scrolls the piece tray toward earlier pieces. */
+              () => tray.current?.scrollBy({ left: -250, behavior: 'smooth' })
             }
           >
             ‹
           </button>
           <div className="piece-tray" ref={tray}>
             {order
-              .filter((id) => !placed.includes(id))
-              .map((id) => (
-                <Piece
-                  key={id}
-                  id={id}
-                  selected={selected === id}
-                  onSelect={(keyboard) => {
-                    setSelected(id);
-                    setMessage(
-                      `Brik ${id} valgt. Brug piletasterne til at vælge en plads, og tryk Enter eller mellemrum. Escape annullerer.`
-                    );
-                    if (keyboard)
-                      focusSlot(
-                        puzzlePieces.find((piece) => !placed.includes(piece.id))
-                          ?.id ?? 1
-                      );
-                  }}
-                  onMove={(point) => {
-                    setSelected(id);
-                    setDrag({ ...point, id });
-                  }}
-                  onDrop={(point) => drop(id, point)}
-                  onCancel={() => setDrag(null)}
-                />
-              ))}
+              .filter(
+                /* Keeps only pieces that have not been placed. */
+                (id) => !placed.includes(id)
+              )
+              .map(
+                /* Renders each remaining piece with its interaction handlers. */
+                (id) => (
+                  <Piece
+                    key={id}
+                    id={id}
+                    selected={selected === id}
+                    onSelect={
+                      /* Selects a piece and guides keyboard users to an empty slot. */
+                      (keyboard) => {
+                        setSelected(id);
+                        setMessage(
+                          `Brik ${id} valgt. Brug piletasterne til at vælge en plads, og tryk Enter eller mellemrum. Escape annullerer.`
+                        );
+                        if (keyboard)
+                          focusSlot(
+                            puzzlePieces.find(
+                              /* Finds the first unfilled puzzle slot. */
+                              (piece) => !placed.includes(piece.id)
+                            )?.id ?? 1
+                          );
+                      }
+                    }
+                    onMove={
+                      /* Updates the selected piece and its drag preview position. */
+                      (point) => {
+                        setSelected(id);
+                        setDrag({ ...point, id });
+                      }
+                    }
+                    onDrop={
+                      /* Attempts to place this piece at the drop position. */
+                      (point) => drop(id, point)
+                    }
+                    onCancel={
+                      /* Removes the piece’s drag preview. */
+                      () => setDrag(null)
+                    }
+                  />
+                )
+              )}
           </div>
           <button
             className="carousel-arrow"
             aria-label="Næste brikker"
-            onClick={() =>
-              tray.current?.scrollBy({ left: 250, behavior: 'smooth' })
+            onClick={
+              /* Scrolls the piece tray toward later pieces. */
+              () => tray.current?.scrollBy({ left: 250, behavior: 'smooth' })
             }
           >
             ›

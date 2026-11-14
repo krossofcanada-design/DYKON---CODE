@@ -29,7 +29,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #03271c url('/assets/forest.webp') center top / cover no-repeat;
+  background: #03271c url('/assets/backgrounds/forest.webp') center top / cover no-repeat;
   font-size: 21px;
   line-height: 1.45;
 }
@@ -1242,7 +1242,7 @@ p {
 
 .story-page h2 {
   font-size: 34px;
-  font-style: normal;
+  font-style: italic;
   margin: 7px 0 0;
 }
 
@@ -1254,6 +1254,11 @@ p {
 
   p {
     margin: 0 0 9px;
+    text-indent: .75em;
+  }
+
+  .first-paragraph {
+    text-indent: 0;
   }
 }
 
@@ -1266,12 +1271,26 @@ p {
 }
 
 .story-illustration {
+  float: right;
+  width: var(--story-illustration-width);
+  height: auto;
+  // Follow the transparent illustration outline rather than its rectangular box.
+  shape-outside: var(--story-illustration);
+  shape-image-threshold: .2;
+  shape-margin: 16px;
+  margin: 4px 0 14px 18px;
+}
+
+.story-text--left .story-illustration {
   float: left;
-  width: 30%;
-  max-height: 175px;
-  object-fit: contain;
-  margin: 12px 23px 12px 0;
-  filter: sepia(.27) saturate(.65);
+  margin: 4px 18px 14px 0;
+}
+
+.story-text--chapter-23 .story-illustration {
+  float: none;
+  display: block;
+  width: var(--story-illustration-width);
+  margin: 4px 0 14px;
 }
 
 .story-page>.ornament {
@@ -1518,15 +1537,15 @@ p {
 .activity-card {
   text-align: left;
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 35px;
   border: 1px solid var(--line);
   padding: 28px;
 
   &>img {
     margin: auto;
-    width: 130px;
-    max-height: 170px;
+    width: min(100%, 560px);
+    height: auto;
     object-fit: contain;
   }
 
@@ -2562,9 +2581,14 @@ p {
     font-size: 54px;
   }
 
-  .story-illustration {
-    width: 32%;
-    margin: 12px 14px 10px 0;
+  .story-text .story-illustration {
+    float: none;
+    clear: both;
+    display: block;
+    width: 100%;
+    height: auto;
+    shape-outside: none;
+    margin: 18px 0;
   }
 
   .audio-player {
@@ -2635,7 +2659,6 @@ p {
   }
 
   .activity-card {
-    grid-template-columns: 70px 1fr;
     gap: 18px;
     padding: 20px 15px;
 

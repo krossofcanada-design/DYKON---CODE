@@ -18,6 +18,7 @@ interface Props {
   date: string;
   onLogin: () => void;
 }
+/* Shows an unlocked day’s story, activity, and quiz, or explains how to unlock it. */
 export default function DayPage({
   content,
   days,
@@ -73,7 +74,7 @@ export default function DayPage({
       ) : (
         <section className="activity-section">
           <div className="section-symbol">
-            <img src="/assets/scissors.webp" alt="" />
+            <img src="/assets/icons/scissors.webp" alt="" />
             <span>
               En kreativ
               <br />
@@ -85,7 +86,10 @@ export default function DayPage({
             En lille stund på {content.activity.duration}
           </p>
           <div className="activity-card">
-            <img src={content.image} alt="" />
+            <img
+              src={`/assets/activities/activity-${String(content.day).padStart(2, '0')}.webp`}
+              alt=""
+            />
             <div>
               <h3>Det skal I bruge</h3>
               <p>{content.activity.materials}</p>
@@ -120,22 +124,3 @@ export default function DayPage({
     </div>
   );
 }
-
-/* For the activity image, use these files:
-- Image path: [DayPage.tsx](/Users/sciops/Desktop/DYKON - CODE/src/pages/DayPage.tsx). Find:
-
-<img src={content.image} alt="" />
-
-This currently uses the calendar lid image. For separate activity images named activity-01.webp through activity-24.webp in public/assets/, change it to:
-
-<img
-  src={`/assets/activity-${String(content.day).padStart(2, '0')}.webp`}
-  alt=""
-/>
-
-- Styling and positioning: [style.scss](/Users/sciops/Desktop/DYKON - CODE/src/styles/style.scss), under ACTIVITY — Duration and activity card:
-  - .activity-card: grid columns, gap, and padding.
-  - .activity-card>img: image width, height, and alignment.
-Also check .activity-card in the RESPONSIVE — Mobile section for mobile layout overrides.
-
-*/

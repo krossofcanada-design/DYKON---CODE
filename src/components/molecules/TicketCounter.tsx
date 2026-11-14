@@ -1,3 +1,4 @@
+/* Displays the participant’s ticket total in a full or compact layout. */
 export default function TicketCounter({
   total,
   compact = false,
@@ -14,7 +15,7 @@ export default function TicketCounter({
       <span className="ticket-number">{total}</span>
       {!compact && (
         <span className="ticket-image">
-          <img src="/assets/ticket.webp" alt="" />
+          <img src="/assets/icons/ticket.webp" alt="" />
         </span>
       )}
     </div>

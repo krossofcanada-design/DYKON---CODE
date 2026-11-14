@@ -14,6 +14,7 @@ import PrototypeControls from './components/organisms/PrototypeControls';
 const days: CalendarDay[] = calendarContent;
 type ModalKind = 'login' | 'terms' | 'privacy' | 'reset' | null;
 
+/* Connects calendar state, hash navigation, pages, and shared dialogs. */
 export default function App() {
   const { state, storageAvailable } = useCalendarState();
   const [hash, setHash] = useState(window.location.hash);
@@ -22,38 +23,58 @@ export default function App() {
   const match = /^#\/day\/(\d+)$/.exec(hash);
   const requestedDay = match ? Number(match[1]) : null;
   const content = requestedDay
-    ? days.find((day) => day.day === requestedDay)
+    ? days.find(
+        /* Finds the content for the day requested in the URL. */
+        (day) => day.day === requestedDay
+      )
     : undefined;
   const progress = getProgress(state);
   const date = state.demoDate || today;
 
-  useEffect(() => {
-    const onHash = () => setHash(window.location.hash);
-    window.addEventListener('hashchange', onHash);
-    const timer = setInterval(() => setToday(copenhagenDate()), 30_000);
-    return () => {
-      window.removeEventListener('hashchange', onHash);
-      clearInterval(timer);
-    };
-  }, []);
-  useEffect(() => {
-    document.title = content
-      ? `${content.day}. december · ${content.title} · Lille Fjer`
-      : 'Lille Fjer · Et juleeventyr i 24 kapitler';
-    if (hash.startsWith('#calendar')) {
-      const targetDay = /^#calendar-(\d+)$/.exec(hash)?.[1];
-      requestAnimationFrame(() =>
-        document
-          .getElementById(targetDay ? `door-${targetDay}` : 'calendar')
-          ?.scrollIntoView({
-            behavior: 'smooth',
-            block: targetDay ? 'center' : 'start',
-          })
+  useEffect(
+    /* Tracks hash navigation and periodically refreshes the current date. */
+    () => {
+      /* Updates the route when the URL hash changes. */
+      const onHash = () => setHash(window.location.hash);
+      window.addEventListener('hashchange', onHash);
+      const timer = setInterval(
+        /* Refreshes today’s date using Copenhagen time. */
+        () => setToday(copenhagenDate()),
+        30_000
       );
-    } else if (hash !== '#main')
-      window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [hash, content]);
+      /* Removes the navigation listener and date refresh timer. */
+      return () => {
+        window.removeEventListener('hashchange', onHash);
+        clearInterval(timer);
+      };
+    },
+    []
+  );
+  useEffect(
+    /* Updates the page title and scroll position for the current route. */
+    () => {
+      document.title = content
+        ? `${content.day}. december · ${content.title} · Lille Fjer`
+        : 'Lille Fjer · Et juleeventyr i 24 kapitler';
+      if (hash.startsWith('#calendar')) {
+        const targetDay = /^#calendar-(\d+)$/.exec(hash)?.[1];
+        requestAnimationFrame(
+          /* Scrolls the calendar or requested door into view after rendering. */
+          () =>
+            document
+              .getElementById(targetDay ? `door-${targetDay}` : 'calendar')
+              ?.scrollIntoView({
+                behavior: 'smooth',
+                block: targetDay ? 'center' : 'start',
+              })
+        );
+      } else if (hash !== '#main')
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    },
+    [hash, content]
+  );
 
+  /* Activates the email profile and closes the login dialog. */
   async function login(email: string) {
     await updateProgress({ type: 'login', email });
     setModal(null);
@@ -78,8 +99,11 @@ export default function App() {
         loggedIn={Boolean(state.activeProfile)}
         total={totalTickets(progress)}
         daily={Boolean(content)}
-        onLogin={() => setModal('login')}
-        onLogout={() => void updateProgress({ type: 'logout' })}
+        onLogin={/* Opens the login dialog. */ () => setModal('login')}
+        onLogout={
+          /* Logs out of the active profile. */
+          () => void updateProgress({ type: 'logout' })
+        }
         onInfo={setModal}
       >
         {requestedDay && !content ? (
@@ -95,7 +119,7 @@ export default function App() {
             state={state}
             progress={progress}
             date={date}
-            onLogin={() => setModal('login')}
+            onLogin={/* Opens the login dialog. */ () => setModal('login')}
           />
         ) : (
           <HomePage
@@ -104,19 +128,28 @@ export default function App() {
             progress={progress}
             date={date}
             onLogin={login}
-            openLogin={() => setModal('login')}
-            onTerms={() => setModal('terms')}
+            openLogin={/* Opens the login dialog. */ () => setModal('login')}
+            onTerms={
+              /* Opens the competition terms dialog. */
+              () => setModal('terms')
+            }
           />
         )}
       </PageLayout>
       <PrototypeControls
         state={state}
         date={date}
-        onLogin={() => setModal('login')}
-        onReset={() => setModal('reset')}
+        onLogin={/* Opens the login dialog. */ () => setModal('login')}
+        onReset={
+          /* Opens the progress reset confirmation. */
+          () => setModal('reset')
+        }
       />
       {modal === 'login' && (
-        <Modal title="Et lille eventyr hver dag" onClose={() => setModal(null)}>
+        <Modal
+          title="Et lille eventyr hver dag"
+          onClose={/* Closes the current dialog. */ () => setModal(null)}
+        >
           <p>
             Log ind med en testadresse for at samle lodder. Brug den samme
             adresse næste gang for at fortsætte i denne browser.
@@ -129,7 +162,10 @@ export default function App() {
         </Modal>
       )}
       {modal === 'terms' && (
-        <Modal title="Om konkurrencen" onClose={() => setModal(null)}>
+        <Modal
+          title="Om konkurrencen"
+          onClose={/* Closes the current dialog. */ () => setModal(null)}
+        >
           <p>
             Denne version er en studieprototype. Tilmeldinger, lodder og
             puslespilsgennemførelse bruges til at afprøve oplevelsen.
@@ -153,7 +189,10 @@ export default function App() {
         </Modal>
       )}
       {modal === 'privacy' && (
-        <Modal title="Privatliv i prototypen" onClose={() => setModal(null)}>
+        <Modal
+          title="Privatliv i prototypen"
+          onClose={/* Closes the current dialog. */ () => setModal(null)}
+        >
           <p>
             Testadressen, åbnede låger, quizsvar og puslespillets fremgang
             gemmes lokalt i din browser. Brug gerne en opdigtet e-mailadresse.
@@ -170,21 +209,33 @@ export default function App() {
         </Modal>
       )}
       {modal === 'reset' && (
-        <Modal title="Begynd forfra?" onClose={() => setModal(null)}>
+        <Modal
+          title="Begynd forfra?"
+          onClose={/* Closes the current dialog. */ () => setModal(null)}
+        >
           <p>
             Dette sletter åbnede låger, quizsvar, lodder og puslespilsfremgang
             for den aktive testprofil eller gæst.
           </p>
           <div className="modal-actions">
-            <button className="outline-button" onClick={() => setModal(null)}>
+            <button
+              className="outline-button"
+              onClick={
+                /* Closes the reset confirmation without changing progress. */
+                () => setModal(null)
+              }
+            >
               Behold fremgang
             </button>
             <GoldButton
-              onClick={async () => {
-                await updateProgress({ type: 'reset' });
-                setModal(null);
-                window.location.hash = '#/';
-              }}
+              onClick={
+                /* Resets the active profile’s progress and returns to the homepage. */
+                async () => {
+                  await updateProgress({ type: 'reset' });
+                  setModal(null);
+                  window.location.hash = '#/';
+                }
+              }
             >
               Nulstil fremgang
             </GoldButton>

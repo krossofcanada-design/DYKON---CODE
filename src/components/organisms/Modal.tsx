@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 
+/* Displays content in a native modal dialog with close controls. */
 export default function Modal({
   title,
   children,
@@ -11,19 +12,27 @@ export default function Modal({
   onClose: () => void;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const dialog = ref.current;
-    dialog?.showModal();
-    return () => dialog?.close();
-  }, []);
+  useEffect(
+    /* Opens the dialog and registers its cleanup. */
+    () => {
+      const dialog = ref.current;
+      dialog?.showModal();
+      /* Closes the dialog when the component unmounts. */
+      return () => dialog?.close();
+    },
+    []
+  );
   return (
     <dialog
       ref={ref}
       className="modal"
       onCancel={onClose}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
+      onClick={
+        /* Closes the modal when its backdrop is clicked. */
+        (event) => {
+          if (event.target === event.currentTarget) onClose();
+        }
+      }
     >
       <div className="modal-inner">
         <button className="modal-close" aria-label="Luk" onClick={onClose}>

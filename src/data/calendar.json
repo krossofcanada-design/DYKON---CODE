@@ -39,7 +39,7 @@
       "sourceLabel": "Historien om Ringsted Dun",
       "sourceUrl": "https://ringsted-dun.dk/om-os/om-ringsted-dun/"
     },
-    "image": "/assets/door-01.webp"
+    "image": "/assets/calendar/door-01.webp"
   },
   {
     "day": 2,
@@ -83,7 +83,7 @@
       "sourceLabel": "Afsnittet Made in Denmark",
       "sourceUrl": "https://ringsted-dun.dk/om-os/om-ringsted-dun/"
     },
-    "image": "/assets/door-02.webp"
+    "image": "/assets/calendar/door-02.webp"
   },
   {
     "day": 3,
@@ -129,7 +129,7 @@
       "sourceLabel": "Afsnittet Kun dun fra Europa",
       "sourceUrl": "https://ringsted-dun.dk/guides/dun-og-fjer/"
     },
-    "image": "/assets/door-03.webp"
+    "image": "/assets/calendar/door-03.webp"
   },
   {
     "day": 4,
@@ -179,7 +179,7 @@
       "sourceLabel": "Afsnittet Hvad betyder bæreevne",
       "sourceUrl": "https://ringsted-dun.dk/guides/dun-og-fjer/"
     },
-    "image": "/assets/door-04.webp"
+    "image": "/assets/calendar/door-04.webp"
   },
   {
     "day": 5,
@@ -225,7 +225,7 @@
       "sourceLabel": "Hvordan dun holder på varmen",
       "sourceUrl": "https://ringsted-dun.dk/guides/dun-og-fjer/"
     },
-    "image": "/assets/door-05.webp"
+    "image": "/assets/calendar/door-05.webp"
   },
   {
     "day": 6,
@@ -270,7 +270,7 @@
       "sourceLabel": "Forskellen på dun og fjer",
       "sourceUrl": "https://ringsted-dun.dk/guides/dun-og-fjer/"
     },
-    "image": "/assets/door-06.webp"
+    "image": "/assets/calendar/door-06.webp"
   },
   {
     "day": 7,
@@ -318,7 +318,7 @@
       "sourceLabel": "Afsnittet Dynens størrelse",
       "sourceUrl": "https://ringsted-dun.dk/guides/valg-af-dyne/"
     },
-    "image": "/assets/door-07.webp"
+    "image": "/assets/calendar/door-07.webp"
   },
   {
     "day": 8,
@@ -364,7 +364,7 @@
       "sourceLabel": "Rådet om dobbeltdyner",
       "sourceUrl": "https://ringsted-dun.dk/guides/valg-af-dyne/"
     },
-    "image": "/assets/door-08.webp"
+    "image": "/assets/calendar/door-08.webp"
   },
   {
     "day": 9,
@@ -409,7 +409,7 @@
       "sourceLabel": "Afsnittet Lav pude",
       "sourceUrl": "https://ringsted-dun.dk/guides/valg-af-hovedpude/"
     },
-    "image": "/assets/door-09.webp"
+    "image": "/assets/calendar/door-09.webp"
   },
   {
     "day": 10,
@@ -454,7 +454,7 @@
       "sourceLabel": "Klodshans under Produktdetaljer",
       "sourceUrl": "https://ringsted-dun.dk/klodshans-3-kammer-puder/"
     },
-    "image": "/assets/door-10.webp"
+    "image": "/assets/calendar/door-10.webp"
   },
   {
     "day": 11,
@@ -499,7 +499,7 @@
       "sourceLabel": "Vaskeguidens afsnit Planlægning",
       "sourceUrl": "https://ringsted-dun.dk/guides/vaskguide-daglig-vedligehold/"
     },
-    "image": "/assets/door-11.webp"
+    "image": "/assets/calendar/door-11.webp"
   },
   {
     "day": 12,
@@ -539,7 +539,7 @@
       "sourceLabel": "Afsnittet Vaskemiddel til dyner og puder",
       "sourceUrl": "https://ringsted-dun.dk/guides/vaskguide-daglig-vedligehold/"
     },
-    "image": "/assets/door-12.webp"
+    "image": "/assets/calendar/door-12.webp"
   },
   {
     "day": 13,
@@ -585,7 +585,7 @@
       "sourceLabel": "Afsnittet Giv dynen en lille rystetur",
       "sourceUrl": "https://ringsted-dun.dk/guides/vaskguide-daglig-vedligehold/"
     },
-    "image": "/assets/door-13.webp"
+    "image": "/assets/calendar/door-13.webp"
   },
   {
     "day": 14,
@@ -629,7 +629,7 @@
       "sourceLabel": "Afsnittet Luftning af dyner og puder",
       "sourceUrl": "https://ringsted-dun.dk/guides/vaskguide-daglig-vedligehold/"
     },
-    "image": "/assets/door-14.webp"
+    "image": "/assets/calendar/door-14.webp"
   },
   {
     "day": 15,
@@ -676,7 +676,7 @@
       "sourceLabel": "Afsnittet Godt med plads",
       "sourceUrl": "https://ringsted-dun.dk/guides/opbevaringsguide/"
     },
-    "image": "/assets/door-15.webp"
+    "image": "/assets/calendar/door-15.webp"
   },
   {
     "day": 16,
@@ -715,7 +715,7 @@
       "sourceLabel": "Afsnittet Vask inden opbevaring",
       "sourceUrl": "https://ringsted-dun.dk/guides/opbevaringsguide/"
     },
-    "image": "/assets/door-16.webp"
+    "image": "/assets/calendar/door-16.webp"
   },
   {
     "day": 17,
@@ -759,7 +759,7 @@
       "sourceLabel": "Afsnittet OEKO-TEX STANDARD 100 Klasse I",
       "sourceUrl": "https://ringsted-dun.dk/guides/maerker/"
     },
-    "image": "/assets/door-17.webp"
+    "image": "/assets/calendar/door-17.webp"
   },
   {
     "day": 18,
@@ -804,7 +804,7 @@
       "sourceLabel": "Afsnittet DOWNPASS",
       "sourceUrl": "https://ringsted-dun.dk/guides/maerker/"
     },
-    "image": "/assets/door-18.webp"
+    "image": "/assets/calendar/door-18.webp"
   },
   {
     "day": 19,
@@ -848,7 +848,7 @@
       "sourceLabel": "Afsnittet Downafresh greenLine",
       "sourceUrl": "https://ringsted-dun.dk/guides/maerker/"
     },
-    "image": "/assets/door-19.webp"
+    "image": "/assets/calendar/door-19.webp"
   },
   {
     "day": 20,
@@ -894,7 +894,7 @@
       "sourceLabel": "Kiddy And og bamsetasken",
       "sourceUrl": "https://ringsted-dun.dk/kiddy-and/"
     },
-    "image": "/assets/door-20.webp"
+    "image": "/assets/calendar/door-20.webp"
   },
   {
     "day": 21,
@@ -943,7 +943,7 @@
       "sourceLabel": "Beskrivelsen af Kiddy Breeze",
       "sourceUrl": "https://ringsted-dun.dk/kiddy-breeze/"
     },
-    "image": "/assets/door-21.webp"
+    "image": "/assets/calendar/door-21.webp"
   },
   {
     "day": 22,
@@ -989,7 +989,7 @@
       "sourceLabel": "Prinsessen på ærten under Fyld",
       "sourceUrl": "https://ringsted-dun.dk/prinsessen-paa-aerten/"
     },
-    "image": "/assets/door-22.webp"
+    "image": "/assets/calendar/door-22.webp"
   },
   {
     "day": 23,
@@ -1036,7 +1036,7 @@
       "sourceLabel": "Nattergalen under Vår",
       "sourceUrl": "https://ringsted-dun.dk/nattergalen/"
     },
-    "image": "/assets/door-23.webp"
+    "image": "/assets/calendar/door-23.webp"
   },
   {
     "day": 24,
@@ -1090,6 +1090,6 @@
       "sourceLabel": "Den eventyrlige dyneserie",
       "sourceUrl": "https://ringsted-dun.dk/dyner/dyneserier/h-c-andersen-dyner/"
     },
-    "image": "/assets/door-24.webp"
+    "image": "/assets/calendar/door-24.webp"
   }
 ]

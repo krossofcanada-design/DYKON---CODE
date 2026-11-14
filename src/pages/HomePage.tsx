@@ -14,6 +14,7 @@ interface Props {
   onTerms: () => void;
 }
 
+/* Renders the welcome page, calendar, and competition signup. */
 export default function HomePage({
   days,
   state,
@@ -28,6 +29,7 @@ export default function HomePage({
     : date > '2026-12-24'
       ? 24
       : 1;
+  /* Scrolls to today’s door and focuses its interactive control. */
   function findToday() {
     const door = document.getElementById(`door-${currentDay}`);
     door?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -54,7 +56,7 @@ export default function HomePage({
         </div>
         <img
           className="hero-feather"
-          src="/assets/feather.webp"
+          src="/assets/illustrations/feather.webp"
           alt="Lille Fjer, en lille elfenbensfarvet fjer med et nysgerrigt ansigt"
           fetchPriority="high"
         />
@@ -102,7 +104,7 @@ export default function HomePage({
           <cite>Fra historien om Lille Fjer</cite>
         </blockquote>
         <img
-          src="/assets/bedtime.webp"
+          src="/assets/illustrations/bedtime.webp"
           alt="En far og hans søn læser Lille Fjer sammen under en hvid dyne"
           loading="lazy"
         />

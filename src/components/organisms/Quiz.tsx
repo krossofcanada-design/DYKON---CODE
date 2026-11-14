@@ -11,6 +11,7 @@ interface Props {
   total: number;
   onLogin: () => void;
 }
+/* Renders the daily quiz and the saved answer result. */
 export default function Quiz({
   content,
   progress,
@@ -28,7 +29,7 @@ export default function Quiz({
         <h2 id="quiz-heading" tabIndex={-1}>
           Dagens quiz
         </h2>
-        <img src="/assets/quiz.webp" alt="" />
+        <img src="/assets/icons/quiz.webp" alt="" />
       </div>
       <p>
         Et rigtigt svar i dagens quiz giver 5 lodder.
@@ -58,42 +59,51 @@ export default function Quiz({
       )}
       <form
         className="quiz-card"
-        onSubmit={async (event) => {
-          event.preventDefault();
-          if (answer === null || submitted || busy) return;
-          setBusy(true);
-          try {
-            await updateProgress({
-              type: 'answer',
-              day: content.day,
-              answer,
-              correctIndex: content.quiz.correctIndex,
-              profile,
-            });
-          } finally {
-            setBusy(false);
+        onSubmit={
+          /* Saves the first selected answer while preventing duplicate submissions. */
+          async (event) => {
+            event.preventDefault();
+            if (answer === null || submitted || busy) return;
+            setBusy(true);
+            try {
+              await updateProgress({
+                type: 'answer',
+                day: content.day,
+                answer,
+                correctIndex: content.quiz.correctIndex,
+                profile,
+              });
+            } finally {
+              setBusy(false);
+            }
           }
-        }}
+        }
       >
         <fieldset disabled={submitted || busy}>
           <legend>{content.quiz.question}</legend>
           <div className="quiz-options">
-            {content.quiz.options.map((option, index) => (
-              <label
-                key={option}
-                className={`quiz-option ${profile && submitted && index === content.quiz.correctIndex ? 'correct' : ''} ${profile && submitted && index === progress.answer && !correct ? 'incorrect' : ''}`}
-              >
-                <input
-                  type="radio"
-                  name={`quiz-${content.day}`}
-                  value={index}
-                  checked={(submitted ? progress.answer : answer) === index}
-                  onChange={() => setAnswer(index)}
-                  required
-                />
-                <span>{option}</span>
-              </label>
-            ))}
+            {content.quiz.options.map(
+              /* Renders a quiz option with its selection and result styling. */
+              (option, index) => (
+                <label
+                  key={option}
+                  className={`quiz-option ${profile && submitted && index === content.quiz.correctIndex ? 'correct' : ''} ${profile && submitted && index === progress.answer && !correct ? 'incorrect' : ''}`}
+                >
+                  <input
+                    type="radio"
+                    name={`quiz-${content.day}`}
+                    value={index}
+                    checked={(submitted ? progress.answer : answer) === index}
+                    onChange={
+                      /* Selects this option as the pending quiz answer. */
+                      () => setAnswer(index)
+                    }
+                    required
+                  />
+                  <span>{option}</span>
+                </label>
+              )
+            )}
           </div>
         </fieldset>
         {!submitted ? (

@@ -40,6 +40,7 @@ interface DoorProps {
   onCancel: () => void;
 }
 
+/* Renders one calendar door with its availability and earned tickets. */
 function Door({
   content,
   status,
@@ -100,7 +101,8 @@ function Door({
           {...(status === 'openable' ? handlers : {})}
           onPointerDown={
             status === 'openable'
-              ? (event) => {
+              ? /* Allows mouse dragging immediately and touch dragging after selection. */
+                (event) => {
                   // Touch and pen gestures scroll until a completed tap selects the door.
                   if (event.pointerType !== 'mouse' && !selected) return;
                   handlers.onPointerDown(event);
@@ -112,7 +114,10 @@ function Door({
           aria-label={`Låge ${content.day}${status === 'locked' ? ` – åbner ${content.day}. december` : ' – tryk Enter eller mellemrum for at lægge i postkassen'}`}
           aria-describedby="calendar-keyboard-help"
           aria-pressed={selected}
-          onClick={(event) => onSelect(event.detail === 0)}
+          onClick={
+            /* Selects the door and identifies keyboard activation. */
+            (event) => onSelect(event.detail === 0)
+          }
           data-day={content.day}
         >
           <span className="door-star" aria-hidden="true">
@@ -147,6 +152,7 @@ function Door({
   );
 }
 
+/* Renders the calendar and manages posting doors into the mailbox. */
 export default function Calendar({
   days,
   state,
@@ -163,30 +169,44 @@ export default function Calendar({
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const loggedIn = Boolean(state.activeProfile);
 
-  useEffect(() => {
-    const cancel = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && !posting.current) {
-        setSelected(null);
-        setDrag(null);
-        setOverMailbox(false);
-      }
-    };
-    window.addEventListener('keydown', cancel);
-    return () => window.removeEventListener('keydown', cancel);
-  }, []);
-  useEffect(() => {
-    setSelected(null);
-    setDrag(null);
-    setMessage('');
-    setOverMailbox(false);
-  }, [state.activeProfile, date]);
   useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current);
+    /* Registers the Escape key handler for cancelling door selection. */
+    () => {
+      /* Cancels selection and dragging unless a door is being posted. */
+      const cancel = (event: KeyboardEvent) => {
+        if (event.key === 'Escape' && !posting.current) {
+          setSelected(null);
+          setDrag(null);
+          setOverMailbox(false);
+        }
+      };
+      window.addEventListener('keydown', cancel);
+      /* Removes the Escape key listener when the calendar unmounts. */
+      return () => window.removeEventListener('keydown', cancel);
     },
     []
   );
+  useEffect(
+    /* Clears transient interaction state when the profile or date changes. */
+    () => {
+      setSelected(null);
+      setDrag(null);
+      setMessage('');
+      setOverMailbox(false);
+    },
+    [state.activeProfile, date]
+  );
+  useEffect(
+    /* Registers cleanup for the posting animation timer. */
+    () =>
+      /* Clears any pending posting timer when the calendar unmounts. */
+      () => {
+        if (timer.current) clearTimeout(timer.current);
+      },
+    []
+  );
 
+  /* Checks whether a pointer position is inside the mailbox. */
   function insideMailbox(point: Point) {
     const rect = mailbox.current?.getBoundingClientRect();
     return Boolean(
@@ -198,6 +218,7 @@ export default function Calendar({
     );
   }
 
+  /* Animates an available door into the mailbox and saves its opening. */
   async function post(day: number) {
     if (posting.current || getDoorStatus(day, date, progress) !== 'openable')
       return;
@@ -211,6 +232,7 @@ export default function Calendar({
       .getElementById(`door-${day}`)
       ?.getBoundingClientRect();
     setDrag(
+      /* Keeps the current drag or starts one at the door’s position. */
       (previous) =>
         previous ?? {
           day,
@@ -219,25 +241,34 @@ export default function Calendar({
           posting: false,
         }
     );
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => setDrag({ day, ...target, posting: true }))
+    requestAnimationFrame(
+      /* Waits a frame before scheduling movement toward the mailbox. */
+      () =>
+        requestAnimationFrame(
+          /* Moves the animated door to the mailbox. */
+          () => setDrag({ day, ...target, posting: true })
+        )
     );
     // Commit once when the drop succeeds, independently of the visual animation.
     await updateProgress({ type: 'open', day, profile: state.activeProfile });
-    timer.current = setTimeout(() => {
-      posting.current = false;
-      setDrag(null);
-      setSelected(null);
-      setOverMailbox(false);
-      setMessage(
-        loggedIn
-          ? `Låge ${day} er lagt i postkassen. Du har fået 1 lod.`
-          : `Låge ${day} er åben. Dagens fortælling og aktivitet venter på dig.`
-      );
-      document
-        .querySelector<HTMLAnchorElement>(`#door-${day} a`)
-        ?.focus({ preventScroll: true });
-    }, 650);
+    timer.current = setTimeout(
+      /* Finishes the posting animation, announces the result, and restores focus. */
+      () => {
+        posting.current = false;
+        setDrag(null);
+        setSelected(null);
+        setOverMailbox(false);
+        setMessage(
+          loggedIn
+            ? `Låge ${day} er lagt i postkassen. Du har fået 1 lod.`
+            : `Låge ${day} er åben. Dagens fortælling og aktivitet venter på dig.`
+        );
+        document
+          .querySelector<HTMLAnchorElement>(`#door-${day} a`)
+          ?.focus({ preventScroll: true });
+      },
+      650
+    );
   }
 
   return (
@@ -271,16 +302,18 @@ export default function Calendar({
               ? `Læg låge ${selected} i postkassen`
               : 'Postkasse – vælg først en låge'
           }
-          onClick={() =>
-            selected !== null
-              ? void post(selected)
-              : setMessage(
-                  'Vælg en tilgængelig låge, og tryk derefter på postkassen.'
-                )
+          onClick={
+            /* Posts the selected door or asks the visitor to select one. */
+            () =>
+              selected !== null
+                ? void post(selected)
+                : setMessage(
+                    'Vælg en tilgængelig låge, og tryk derefter på postkassen.'
+                  )
           }
         >
           <img
-            src="/assets/mailbox.webp"
+            src="/assets/illustrations/mailbox.webp"
             alt="Rød postkasse"
             draggable="false"
           />
@@ -306,56 +339,73 @@ export default function Calendar({
           'Åbn en låge på dagen eller en hvilken som helst dag derefter.'}
       </p>
       <div className="calendar-grid">
-        {days.map((content) => {
-          const status = getDoorStatus(content.day, date, progress);
-          return (
-            <Door
-              key={content.day}
-              content={content}
-              status={status}
-              progress={progress}
-              loggedIn={loggedIn}
-              today={date === `2026-12-${String(content.day).padStart(2, '0')}`}
-              selected={selected === content.day}
-              dragging={drag?.day === content.day}
-              onSelect={(keyboard) => {
-                if (posting.current) return;
-                if (status === 'locked') {
-                  setMessage(
-                    `Låge ${content.day} åbner den ${content.day}. december 2026.`
-                  );
-                  return;
+        {days.map(
+          /* Renders each door with its current status and interaction handlers. */
+          (content) => {
+            const status = getDoorStatus(content.day, date, progress);
+            return (
+              <Door
+                key={content.day}
+                content={content}
+                status={status}
+                progress={progress}
+                loggedIn={loggedIn}
+                today={
+                  date === `2026-12-${String(content.day).padStart(2, '0')}`
                 }
-                if (keyboard) {
-                  void post(content.day);
-                  return;
+                selected={selected === content.day}
+                dragging={drag?.day === content.day}
+                onSelect={
+                  /* Selects an available door or posts it immediately for keyboard users. */
+                  (keyboard) => {
+                    if (posting.current) return;
+                    if (status === 'locked') {
+                      setMessage(
+                        `Låge ${content.day} åbner den ${content.day}. december 2026.`
+                      );
+                      return;
+                    }
+                    if (keyboard) {
+                      void post(content.day);
+                      return;
+                    }
+                    setSelected(content.day);
+                    setMessage(`Låge ${content.day} er klar til postkassen.`);
+                  }
                 }
-                setSelected(content.day);
-                setMessage(`Låge ${content.day} er klar til postkassen.`);
-              }}
-              onMove={(point) => {
-                if (posting.current) return;
-                setSelected(content.day);
-                setDrag({ day: content.day, ...point, posting: false });
-                setOverMailbox(insideMailbox(point));
-              }}
-              onDrop={(point) => {
-                if (insideMailbox(point)) void post(content.day);
-                else {
-                  setDrag(null);
-                  setOverMailbox(false);
-                  setMessage(
-                    'Læg lågen i postkassen for at åbne den. Du kan også trykke på postkassen.'
-                  );
+                onMove={
+                  /* Moves the dragged door and updates the mailbox highlight. */
+                  (point) => {
+                    if (posting.current) return;
+                    setSelected(content.day);
+                    setDrag({ day: content.day, ...point, posting: false });
+                    setOverMailbox(insideMailbox(point));
+                  }
                 }
-              }}
-              onCancel={() => {
-                setDrag(null);
-                setOverMailbox(false);
-              }}
-            />
-          );
-        })}
+                onDrop={
+                  /* Posts a door dropped inside the mailbox or explains how to try again. */
+                  (point) => {
+                    if (insideMailbox(point)) void post(content.day);
+                    else {
+                      setDrag(null);
+                      setOverMailbox(false);
+                      setMessage(
+                        'Læg lågen i postkassen for at åbne den. Du kan også trykke på postkassen.'
+                      );
+                    }
+                  }
+                }
+                onCancel={
+                  /* Clears the drag preview and mailbox highlight. */
+                  () => {
+                    setDrag(null);
+                    setOverMailbox(false);
+                  }
+                }
+              />
+            );
+          }
+        )}
       </div>
       {drag && (
         <div

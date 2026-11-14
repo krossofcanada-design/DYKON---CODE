@@ -1,6 +1,7 @@
 import type { CalendarState } from '../../types/calendar';
 import { updateProgress } from '../../state/store';
 
+/* Renders controls for testing dates, profiles, and example progress. */
 export default function PrototypeControls({
   state,
   date,
@@ -35,15 +36,23 @@ export default function PrototypeControls({
           min="2026-11-01"
           max="2027-01-31"
           value={state.demoDate || date}
-          onInput={(event) => {
-            if (event.currentTarget.value)
-              void updateProgress({
-                type: 'date',
-                date: event.currentTarget.value,
-              });
-          }}
+          onInput={
+            /* Sets the demo date from the date picker. */
+            (event) => {
+              if (event.currentTarget.value)
+                void updateProgress({
+                  type: 'date',
+                  date: event.currentTarget.value,
+                });
+            }
+          }
         />
-        <button onClick={() => void updateProgress({ type: 'date', date: '' })}>
+        <button
+          onClick={
+            /* Switches from the demo date to the actual date. */
+            () => void updateProgress({ type: 'date', date: '' })
+          }
+        >
           Brug den rigtige dato i Danmark
         </button>
         <p className="current-profile">
@@ -54,17 +63,21 @@ export default function PrototypeControls({
         <button
           onClick={
             state.activeProfile
-              ? () => void updateProgress({ type: 'logout' })
+              ? /* Switches back to the guest profile. */
+                () => void updateProgress({ type: 'logout' })
               : onLogin
           }
         >
           {state.activeProfile ? 'Prøv som gæst' : 'Prøv som deltager'}
         </button>
         <button
-          onClick={async () => {
-            await updateProgress({ type: 'example' });
-            window.location.hash = '#/';
-          }}
+          onClick={
+            /* Loads the example profile and returns to the calendar homepage. */
+            async () => {
+              await updateProgress({ type: 'example' });
+              window.location.hash = '#/';
+            }
+          }
         >
           Vis 6. december med 22 lodder
         </button>

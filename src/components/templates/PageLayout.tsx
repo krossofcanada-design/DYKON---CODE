@@ -11,16 +11,21 @@ interface Props {
   onLogout: () => void;
   onInfo: (kind: 'terms' | 'privacy') => void;
 }
+
+/* Wraps page content with the shared header, footer, and skip link. */
 export default function PageLayout({ children, onInfo, ...header }: Props) {
   return (
     <div className="site-shell">
       <a
         href="#main"
         className="skip-link"
-        onClick={(event) => {
-          event.preventDefault();
-          document.getElementById('main')?.focus();
-        }}
+        onClick={
+          /* Moves keyboard focus directly to the main page content. */
+          (event) => {
+            event.preventDefault();
+            document.getElementById('main')?.focus();
+          }
+        }
       >
         Gå til indhold
       </a>

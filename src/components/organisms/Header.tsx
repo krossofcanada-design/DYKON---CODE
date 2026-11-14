@@ -7,6 +7,7 @@ interface Props {
   onLogin: () => void;
   onLogout: () => void;
 }
+/* Renders the site branding, navigation, and account controls. */
 export default function Header({
   loggedIn,
   total,
