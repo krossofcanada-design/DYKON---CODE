@@ -1,3 +1,5 @@
+/* Displays the story, activity, and quiz features available behind each door. */
+
 const features = [
   {
     icon: 'book',
@@ -30,7 +32,7 @@ const features = [
     ),
   },
 ];
-/* Displays the story, activity, and quiz features available behind each door. */
+
 export default function FeatureStrip() {
   return (
     <div className="feature-section">

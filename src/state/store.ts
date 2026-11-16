@@ -1,3 +1,5 @@
+/* Stores calendar progress in localStorage and synchronizes changes with React and other browser tabs. */
+
 import { useSyncExternalStore } from 'react';
 import { initialState, parseSavedState, reduceProgress } from './progress';
 import type { ProgressAction } from './progress';

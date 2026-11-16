@@ -1,7 +1,8 @@
+/* Renders the email signup form and its submission state. */
+
 import { useState } from 'react';
 import GoldButton from '../atoms/GoldButton';
 
-/* Renders the email signup form and its submission state. */
 export default function LoginForm({
   onLogin,
   compact = false,

@@ -1,3 +1,5 @@
+/* Displays the 24-piece puzzle, handles piece placement, and saves puzzle progress. */
+
 import { useEffect, useRef, useState } from 'react';
 import puzzlePieces from '../../data/puzzle.json';
 import { usePointerDrag } from '../../hooks/usePointerDrag';

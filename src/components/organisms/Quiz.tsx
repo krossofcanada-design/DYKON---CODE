@@ -1,3 +1,5 @@
+/* Renders the daily quiz and the saved answer result. */
+
 import { useState } from 'react';
 import type { CalendarDay, DayProgress } from '../../types/calendar';
 import { updateProgress } from '../../state/store';
@@ -11,7 +13,6 @@ interface Props {
   total: number;
   onLogin: () => void;
 }
-/* Renders the daily quiz and the saved answer result. */
 export default function Quiz({
   content,
   progress,

@@ -1,3 +1,5 @@
+/* Tracks pointer gestures and separates dragging from ordinary clicks. */
+
 import { useRef } from 'react';
 import type { PointerEvent } from 'react';
 
@@ -6,7 +8,6 @@ export interface Point {
   y: number;
 }
 
-/* Tracks pointer gestures and separates dragging from ordinary clicks. */
 export function usePointerDrag(
   onMove: (point: Point) => void,
   onDrop: (point: Point) => void,

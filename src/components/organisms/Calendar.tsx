@@ -1,3 +1,5 @@
+/* Displays calendar doors and handles selecting, dragging, and posting them into the mailbox. */
+
 import { useEffect, useRef, useState } from 'react';
 import type {
   CalendarDay,

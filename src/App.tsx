@@ -1,3 +1,5 @@
+/* Connects calendar state, hash navigation, pages, and shared dialogs. */
+
 import { useEffect, useState } from 'react';
 import calendarContent from './data/calendar.json';
 import type { CalendarDay } from './types/calendar';
@@ -14,7 +16,6 @@ import PrototypeControls from './components/organisms/PrototypeControls';
 const days: CalendarDay[] = calendarContent;
 type ModalKind = 'login' | 'terms' | 'privacy' | 'reset' | null;
 
-/* Connects calendar state, hash navigation, pages, and shared dialogs. */
 export default function App() {
   const { state, storageAvailable } = useCalendarState();
   const [hash, setHash] = useState(window.location.hash);

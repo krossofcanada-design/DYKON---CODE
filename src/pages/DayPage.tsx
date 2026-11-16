@@ -1,3 +1,5 @@
+/* Shows an unlocked day’s story, activity, and quiz, or explains how to unlock it. */
+
 import type { CalendarDay, CalendarState, Progress } from '../types/calendar';
 import {
   getDay,
@@ -18,7 +20,6 @@ interface Props {
   date: string;
   onLogin: () => void;
 }
-/* Shows an unlocked day’s story, activity, and quiz, or explains how to unlock it. */
 export default function DayPage({
   content,
   days,

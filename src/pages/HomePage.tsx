@@ -1,3 +1,5 @@
+/* Renders the welcome page, calendar, and competition signup. */
+
 import type { CalendarDay, CalendarState, Progress } from '../types/calendar';
 import FeatureStrip from '../components/molecules/FeatureStrip';
 import Calendar from '../components/organisms/Calendar';
@@ -14,7 +16,6 @@ interface Props {
   onTerms: () => void;
 }
 
-/* Renders the welcome page, calendar, and competition signup. */
 export default function HomePage({
   days,
   state,

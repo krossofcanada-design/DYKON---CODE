@@ -1,3 +1,5 @@
+/* Renders the site branding, navigation, and account controls. */
+
 import TicketCounter from '../molecules/TicketCounter';
 
 interface Props {
@@ -7,7 +9,6 @@ interface Props {
   onLogin: () => void;
   onLogout: () => void;
 }
-/* Renders the site branding, navigation, and account controls. */
 export default function Header({
   loggedIn,
   total,

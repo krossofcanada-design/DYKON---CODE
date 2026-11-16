@@ -1,7 +1,8 @@
+/* Displays content in a native modal dialog with close controls. */
+
 import { useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 
-/* Displays content in a native modal dialog with close controls. */
 export default function Modal({
   title,
   children,

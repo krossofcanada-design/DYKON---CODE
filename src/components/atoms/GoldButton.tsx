@@ -1,6 +1,7 @@
+/* Renders a gold-styled button while forwarding standard button props. */
+
 import type { ButtonHTMLAttributes } from 'react';
 
-/* Renders a gold-styled button while forwarding standard button props. */
 export default function GoldButton({
   children,
   className = '',

@@ -1,3 +1,5 @@
+/* Displays illustrated story chapters with reading controls and navigation between available days. */
+
 import { Fragment, useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import type { CalendarDay } from '../../types/calendar';

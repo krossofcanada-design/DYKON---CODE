@@ -1,3 +1,5 @@
+/* Defines calendar progress rules, ticket calculations, date checks, and validation of saved state. */
+
 import type {
   CalendarState,
   DayProgress,

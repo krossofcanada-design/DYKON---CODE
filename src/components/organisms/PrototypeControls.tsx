@@ -1,7 +1,8 @@
+/* Renders controls for testing dates, profiles, and example progress. */
+
 import type { CalendarState } from '../../types/calendar';
 import { updateProgress } from '../../state/store';
 
-/* Renders controls for testing dates, profiles, and example progress. */
 export default function PrototypeControls({
   state,
   date,

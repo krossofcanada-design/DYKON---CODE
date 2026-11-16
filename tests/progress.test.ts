@@ -1,3 +1,5 @@
+/* Tests calendar unlocking, ticket awards, profile isolation, puzzle progress, and saved-state validation. */
+
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {

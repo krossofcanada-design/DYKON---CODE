@@ -1,3 +1,5 @@
+/* Wraps page content with the shared header, footer, and skip link. */
+
 import type { ReactNode } from 'react';
 import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
@@ -12,7 +14,6 @@ interface Props {
   onInfo: (kind: 'terms' | 'privacy') => void;
 }
 
-/* Wraps page content with the shared header, footer, and skip link. */
 export default function PageLayout({ children, onInfo, ...header }: Props) {
   return (
     <div className="site-shell">

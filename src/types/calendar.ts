@@ -1,3 +1,5 @@
+/* Defines shared TypeScript types for calendar content, quizzes, profiles, and saved progress. */
+
 export type DoorStatus = 'locked' | 'openable' | 'opened';
 
 export interface QuizContent {
