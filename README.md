@@ -14,10 +14,32 @@ npm run dev
 Open the URL printed by Vite. To check the code and create a production build, run the following commands.
 
 ```bash
-npm test
+npm run test
 npm run build
 npm run preview
 ```
+
+The `npm run test` command (also written `npm test`) runs the Node tests for calendar rules and saved progress.
+Component tests use Vitest and React Testing Library in jsdom:
+
+```bash
+npm run test:ui       # Watch component tests while editing; press q to quit
+npm run test:ui:run   # Run component tests once
+npm run test:all      # Run both test suites once
+```
+
+Put component tests in `src/**/*.test.tsx`. Vitest loads matchers and DOM cleanup
+from `src/tests/setupTests.ts`; Node tests remain in `tests/*.test.ts`.
+
+While changing components, keep `npm run test:ui` running to recheck them as you
+save. Run `npm run test` after changing calendar rules, tickets, profiles, or
+saved progress. Run `npm run test:all` and `npm run build` before committing,
+submitting, or deploying changes. Text-only documentation changes do not need a
+test run.
+
+`src/tests/setupTests.ts` holds shared test setup rather than individual tests.
+Its location is configured by `test.setupFiles` in `vite.config.ts`.
+Component tests live beside their components.
 
 ## Try the experience
 

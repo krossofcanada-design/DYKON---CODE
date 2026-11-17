@@ -1,4 +1,4 @@
-/* Configures TypeScript compilation and type checking for the Vite configuration. */
+/* Configures TypeScript compilation and type checking for Vite and Node tests. */
 
 {
   "compilerOptions": {
@@ -21,5 +21,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "tests/**/*.ts"]
 }
