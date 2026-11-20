@@ -40,7 +40,7 @@ function Piece({
       }
       data-piece={id}
       aria-describedby="puzzle-keyboard-help"
-      aria-label={`Brik ${id}`}
+      aria-label={`Brik ${id}, passer i række ${Math.floor((id - 1) / 6) + 1}, kolonne ${((id - 1) % 6) + 1}`}
       aria-pressed={selected}
     >
       <img src={puzzlePieces[id - 1].image} alt="" draggable="false" />
@@ -92,7 +92,7 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
     if (busy.current) return;
     setDrag(null);
     if (piece !== slot) {
-      setMessage('Prøv et andet sted. Se efter kanter og detaljer i billedet.');
+      setMessage('Brikken passer ikke her. Prøv en anden plads.');
       return;
     }
     busy.current = true;
@@ -192,7 +192,7 @@ export default function Puzzle({ placed, profile, onLogin }: Props) {
         <img
           className="puzzle-outline"
           src="/assets/puzzle/puzzle-outline.webp"
-          alt=""
+          alt="Puslespilsmotiv fra Snedronningens eventyr, opdelt i fire rækker og seks kolonner."
         />
         {puzzlePieces
           .filter(

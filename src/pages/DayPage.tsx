@@ -33,7 +33,7 @@ export default function DayPage({
     return (
       <section className="gate">
         <Ornament />
-        <h1>Et lille øjeblik endnu …</h1>
+        <h1 tabIndex={-1}>Et lille øjeblik endnu …</h1>
         <p>
           Låge {content.day} åbner den {content.day}. december 2026.
         </p>
@@ -46,7 +46,7 @@ export default function DayPage({
     return (
       <section className="gate">
         <img src={content.image} alt="" />
-        <h1>Et eventyr venter</h1>
+        <h1 tabIndex={-1}>Et eventyr venter</h1>
         <p>
           Læg først låge {content.day} i postkassen.
           <br />
@@ -61,7 +61,12 @@ export default function DayPage({
     <div className="daily-page">
       <header className="daily-hero">
         <p className="eyebrow">Kapitel {content.day}</p>
-        <h1>Lille Fjer</h1>
+        <h1
+          tabIndex={-1}
+          aria-label={`Lille Fjer, kapitel ${content.day}: ${content.title}`}
+        >
+          Lille Fjer
+        </h1>
         <p className="italic">{content.title}</p>
       </header>
       <StoryReader content={content} days={days} date={date} />

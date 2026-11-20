@@ -325,7 +325,9 @@ export default function Calendar({
         </button>
       </div>
       <div className="calendar-intro">
-        <h2 id="calendar-title">24 små øjeblikke frem mod Jul</h2>
+        <h2 id="calendar-title" tabIndex={-1}>
+          24 små øjeblikke frem mod Jul
+        </h2>
         <p>
           Bag hver låge venter et nyt kapitel i Lille Fjers eventyr. Det er også
           her, du finder dagens aktivitet og muligheden for at samle flere

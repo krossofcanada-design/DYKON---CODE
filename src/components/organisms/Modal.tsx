@@ -1,6 +1,6 @@
 /* Displays content in a native modal dialog with close controls. */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import type { ReactNode } from 'react';
 
 export default function Modal({
@@ -13,6 +13,7 @@ export default function Modal({
   onClose: () => void;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
   useEffect(
     /* Opens the dialog and registers its cleanup. */
     () => {
@@ -27,6 +28,7 @@ export default function Modal({
     <dialog
       ref={ref}
       className="modal"
+      aria-labelledby={titleId}
       onCancel={onClose}
       onClick={
         /* Closes the modal when its backdrop is clicked. */
@@ -39,7 +41,7 @@ export default function Modal({
         <button className="modal-close" aria-label="Luk" onClick={onClose}>
           ×
         </button>
-        <h2>{title}</h2>
+        <h2 id={titleId}>{title}</h2>
         {children}
       </div>
     </dialog>

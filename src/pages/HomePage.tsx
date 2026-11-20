@@ -47,7 +47,7 @@ export default function HomePage({
               ? `${currentDay}. December`
               : 'Et juleeventyr i 24 kapitler'}
           </p>
-          <h1>Lille Fjer</h1>
+          <h1 tabIndex={-1}>Lille Fjer</h1>
           <p className="hero-subtitle">
             {state.activeProfile
               ? days[currentDay - 1].title

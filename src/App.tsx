@@ -1,6 +1,6 @@
 /* Connects calendar state, hash navigation, pages, and shared dialogs. */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import calendarContent from './data/calendar.json';
 import type { CalendarDay } from './types/calendar';
 import { useCalendarState, updateProgress } from './state/store';
@@ -23,6 +23,7 @@ export default function App() {
   const [modal, setModal] = useState<ModalKind>(null);
   const match = /^#\/day\/(\d+)$/.exec(hash);
   const requestedDay = match ? Number(match[1]) : null;
+  const previousRoute = useRef({ hash, requestedDay });
   const content = requestedDay
     ? days.find(
         /* Finds the content for the day requested in the URL. */
@@ -52,27 +53,37 @@ export default function App() {
     []
   );
   useEffect(
-    /* Updates the page title and scroll position for the current route. */
+    /* Updates the title, scroll position, and focus after navigation. */
     () => {
       document.title = content
         ? `${content.day}. december · ${content.title} · Lille Fjer`
         : 'Lille Fjer · Et juleeventyr i 24 kapitler';
+      const previous = previousRoute.current;
+      previousRoute.current = { hash, requestedDay };
       if (hash.startsWith('#calendar')) {
         const targetDay = /^#calendar-(\d+)$/.exec(hash)?.[1];
-        requestAnimationFrame(
-          /* Scrolls the calendar or requested door into view after rendering. */
-          () =>
-            document
-              .getElementById(targetDay ? `door-${targetDay}` : 'calendar')
-              ?.scrollIntoView({
-                behavior: 'smooth',
-                block: targetDay ? 'center' : 'start',
-              })
+        const target = document.getElementById(
+          targetDay ? `door-${targetDay}` : 'calendar'
         );
-      } else if (hash !== '#main')
+        if (hash !== previous.hash) {
+          target
+            ?.querySelector<HTMLElement>(targetDay ? 'a, button' : 'h2')
+            ?.focus({ preventScroll: true });
+        }
+        target?.scrollIntoView({
+          behavior: 'smooth',
+          block: targetDay ? 'center' : 'start',
+        });
+      } else if (hash !== '#main') {
+        if (requestedDay !== previous.requestedDay) {
+          document
+            .querySelector<HTMLElement>('#main h1')
+            ?.focus({ preventScroll: true });
+        }
         window.scrollTo({ top: 0, behavior: 'instant' });
+      }
     },
-    [hash, content]
+    [hash, content, requestedDay]
   );
 
   /* Activates the email profile and closes the login dialog. */
@@ -109,7 +120,7 @@ export default function App() {
       >
         {requestedDay && !content ? (
           <section className="gate">
-            <h1>Denne låge findes ikke</h1>
+            <h1 tabIndex={-1}>Denne låge findes ikke</h1>
             <a href="#/">Til julekalenderen</a>
           </section>
         ) : content ? (

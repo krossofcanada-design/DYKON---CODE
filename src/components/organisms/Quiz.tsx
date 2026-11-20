@@ -107,29 +107,32 @@ export default function Quiz({
             )}
           </div>
         </fieldset>
-        {!submitted ? (
+        {!submitted && (
           <>
             <GoldButton disabled={answer === null || busy}>
               {busy ? 'Gemmer …' : 'Afgiv svar'}
             </GoldButton>
             <p className="small italic">Du har 1 forsøg</p>
           </>
-        ) : (
-          <div className="quiz-result" role="status">
-            <h3>
-              {profile && correct
-                ? 'Det er helt rigtigt!'
-                : 'Tak for dit svar!'}
-            </h3>
-            {profile && <p>{content.quiz.explanation}</p>}
-            <p className="result-tickets">
-              {profile
-                ? `Du har fået ${progress.quizTickets} ${progress.quizTickets === 1 ? 'lod' : 'lodder'}.`
-                : 'Du har svaret som gæst.'}
-            </p>
-            <p className="small">Dit første svar er gemt.</p>
-          </div>
         )}
+        <div role="status" aria-atomic="true">
+          {submitted && (
+            <div className="quiz-result">
+              <h3>
+                {profile && correct
+                  ? 'Det er helt rigtigt!'
+                  : 'Tak for dit svar!'}
+              </h3>
+              {profile && <p>{content.quiz.explanation}</p>}
+              <p className="result-tickets">
+                {profile
+                  ? `Du har fået ${progress.quizTickets} ${progress.quizTickets === 1 ? 'lod' : 'lodder'}.`
+                  : 'Du har svaret som gæst.'}
+              </p>
+              <p className="small">Dit første svar er gemt.</p>
+            </div>
+          )}
+        </div>
       </form>
     </section>
   );
