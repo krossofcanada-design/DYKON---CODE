@@ -3,61 +3,61 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/CrimsonText-Regular.ttf') format('truetype');
+  src: url('/fonts/CrimsonText-Regular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Crimson Text';
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/CrimsonText-Italic.ttf') format('truetype');
+  src: url('/fonts/CrimsonText-Italic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Crimson Text';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/CrimsonText-SemiBold.ttf') format('truetype');
+  src: url('/fonts/CrimsonText-SemiBold.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Crimson Text';
   font-style: italic;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/CrimsonText-SemiBoldItalic.ttf') format('truetype');
+  src: url('/fonts/CrimsonText-SemiBoldItalic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Crimson Text';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/CrimsonText-Bold.ttf') format('truetype');
+  src: url('/fonts/CrimsonText-Bold.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Crimson Text';
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/CrimsonText-BoldItalic.ttf') format('truetype');
+  src: url('/fonts/CrimsonText-BoldItalic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/font-5.ttf) format('truetype');
+  src: url(/fonts/font-5.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/fonts/font-6.ttf) format('truetype');
+  src: url(/fonts/font-6.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(/fonts/font-7.ttf) format('truetype');
+  src: url(/fonts/font-7.woff2) format('woff2');
 }
