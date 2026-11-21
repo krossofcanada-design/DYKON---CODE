@@ -28,6 +28,7 @@ beforeEach(async () => {
 });
 
 describe('Calendar doors', () => {
+  // Checks that door 6 shows its number and is available before it is opened.
   it('shows an available door with its day number', () => {
     render(<TestCalendar />);
     const door = screen.getByRole('button', { name: /^Låge 6 –/ });
@@ -36,6 +37,7 @@ describe('Calendar doors', () => {
     expect(screen.queryByRole('link', { name: /Besøg dagen/ })).not.toBeInTheDocument();
   });
 
+  // Selects door 6 and checks that posting it reveals the link to December 6.
   it('opens a selected door through the mailbox and reveals the day link', async () => {
     const user = userEvent.setup();
     render(<TestCalendar />);
@@ -48,6 +50,7 @@ describe('Calendar doors', () => {
     expect(screen.queryByRole('button', { name: /^Låge 6 –/ })).not.toBeInTheDocument();
   });
 
+  // Clicks door 7 early and checks that it stays locked and reports its opening date.
   it('keeps a future door locked when clicked', async () => {
     const user = userEvent.setup();
     render(<TestCalendar />);
