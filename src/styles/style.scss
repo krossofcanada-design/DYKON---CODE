@@ -27,11 +27,11 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
   min-height: 100vh;
   background: #03271c url('/assets/backgrounds/forest.webp') center top / cover no-repeat;
-  font-size: 21px;
+  font-size: 1.3125rem;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 button, input {
@@ -80,12 +80,12 @@ h1,h2,h3 {
 }
 
 h2 {
-  font-size: clamp(30px, 3.1vw, 44px);
+  font-size: clamp(1.875rem, calc(1rem + 1.9vw), 2.75rem);
   margin-bottom: 26px;
 }
 
 h3 {
-  font-size: 25px;
+  font-size: 1.5625rem;
 }
 
 p {
@@ -109,7 +109,7 @@ p {
 }
 
 .small {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .italic, .eyebrow {
@@ -138,11 +138,11 @@ p {
 .site-header {
   min-height: 115px;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
   padding-top: 30px;
-  gap: 25px;
+  gap: 12px 25px;
 
   &::before {
     content: '';
@@ -156,6 +156,9 @@ p {
 }
 
 .brand {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 100%;
   position: relative;
   display: flex;
   gap: 17px;
@@ -165,7 +168,7 @@ p {
 
 .ringsted-wordmark {
   font-family: 'Inter',sans-serif;
-  font-size: 24px;
+  font-size: 1.5rem;
   letter-spacing: -1px;
 }
 
@@ -181,20 +184,21 @@ p {
   line-height: 1.1;
 
   small {
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-style: normal;
   }
 
   strong {
-    font-size: 26px;
+    font-size: 1.625rem;
     font-style: normal;
   }
 }
 
 .header-actions {
-  position: absolute;
-  right: 0;
-  top: 75px;
+  grid-column: 2;
+  grid-row: 2;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -208,7 +212,7 @@ p {
   border: 1px solid var(--gold);
   background: transparent;
   padding: 2px 23px;
-  font-size: 16px;
+  font-size: 1rem;
   min-height: 30px;
 
   &:hover {
@@ -221,10 +225,9 @@ p {
 // ==========================================================================
 
 .back-link {
-  position: absolute;
-  left: 0;
-  top: 83px;
-  font-size: 18px;
+  grid-column: 1;
+  grid-row: 2;
+  font-size: 1.125rem;
 }
 
 // ==========================================================================
@@ -244,12 +247,12 @@ p {
 }
 
 .hero h1 {
-  font-size: clamp(74px,8.5vw,118px);
+  font-size: clamp(4.625rem,calc(3rem + 5vw),7.375rem);
   letter-spacing: -3px;
   margin: 0 auto 22px;
   line-height: .95;
   position: relative;
-  width: max-content;
+  max-width: 100%;
 }
 
 .hero h1::after {
@@ -262,14 +265,13 @@ p {
 }
 
 .eyebrow {
-  font-size: 23px;
+  font-size: 1.4375rem;
   margin-bottom: 16px;
 }
 
 .hero-subtitle {
-  font-size: 23px;
+  font-size: 1.4375rem;
   font-style: normal;
-  white-space: nowrap;
 }
 
 // ==========================================================================
@@ -288,7 +290,7 @@ p {
   justify-content: center;
   clip-path: polygon(5px 0,calc(100% - 5px) 0,calc(100% - 5px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 5px) calc(100% - 4px),calc(100% - 5px) 100%,5px 100%,5px calc(100% - 4px),0 calc(100% - 4px),0 4px,5px 4px);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1.25rem;
   transition: filter .2s,transform .2s;
 
   &:hover {
@@ -345,7 +347,7 @@ p {
 
   &>.eyebrow {
     text-align: center;
-    font-size: 32px;
+    font-size: 2rem;
   }
 }
 
@@ -376,7 +378,7 @@ p {
   }
 
   p {
-    font-size: 21px;
+    font-size: 1.3125rem;
     font-style: normal;
     text-align: center;
     margin: 0;
@@ -400,13 +402,13 @@ p {
   text-align: left;
 
   h2 {
-    font-size: 36px;
+    font-size: 2.25rem;
     border-bottom: 1px solid var(--line);
     padding-bottom: 15px;
   }
 
   p {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-style: normal;
     color: rgba(244, 239, 220, .85);
   }
@@ -426,7 +428,7 @@ p {
 }
 
 .competition-copy .text-button {
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-style: normal;
 }
 
@@ -454,7 +456,7 @@ p {
 }
 
 .login-form h3 {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 600;
   margin-bottom: 2px;
   position: relative;
@@ -462,12 +464,12 @@ p {
 }
 
 .login-form .small {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-bottom: 20px;
 }
 
 .form-rules {
-  font-size: 15px;
+  font-size: 0.9375rem;
   max-width: 80%;
 
   strong {
@@ -486,19 +488,20 @@ p {
 
 .form-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   position: relative;
   z-index: 1;
 
   input {
     min-width: 0;
-    flex: 1;
+    flex: 1 1 9em;
     border: 1px solid #a88950;
     border-radius: 4px;
     background: transparent;
     padding: 7px 10px;
     color: inherit;
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   input::placeholder {
@@ -509,14 +512,14 @@ p {
   .gold-button {
     min-width: 90px;
     min-height: 36px;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 6px 14px;
   }
 }
 
 .prototype-note {
   font-family: Inter,sans-serif;
-  font-size: 10px;
+  font-size: 0.875rem;
   line-height: 1.5;
   margin: 12px 0 0;
   opacity: .8;
@@ -557,14 +560,14 @@ p {
   text-align: center;
 
   &>p {
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     margin: 7px 0 0;
     max-width: 350px;
   }
 
   &>.text-button {
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
 }
 
@@ -574,6 +577,7 @@ p {
 
 .ticket-counter {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 17px;
@@ -584,9 +588,8 @@ p {
   outline: 1px solid #bfa17344;
   outline-offset: 4px;
   padding: 5px 14px;
-  font-size: 21px;
+  font-size: 1.3125rem;
   font-style: normal;
-  white-space: nowrap;
 }
 
 .ticket-number {
@@ -616,7 +619,7 @@ p {
 }
 
 .ticket-counter.compact {
-  font-size: 14px;
+  font-size: 0.875rem;
   border: 0;
   outline: 0;
   gap: 8px;
@@ -650,12 +653,12 @@ p {
   position: absolute;
   top: 8px;
   right: -12px;
-  width: 29px;
-  height: 29px;
+  min-width: 1.8em;
+  min-height: 1.8em;
   border-radius: 50%;
   background: var(--gold-light);
   color: #08271d;
-  font: 500 16px/29px Inter,sans-serif;
+  font: 500 1rem/1.8 Inter,sans-serif;
   opacity: 0;
   transition: opacity .2s;
 }
@@ -700,7 +703,7 @@ p {
     margin: 0 auto;
     color: var(--gold-light);
     font-style: normal;
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
 }
 
@@ -708,21 +711,27 @@ p {
   text-align: center;
   min-height: 46px;
   margin: 22px 0;
-  font-size: 16px;
+  font-size: 1rem;
   opacity: .9;
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(6,minmax(0,1fr));
-  gap: 23px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, max(7rem, (100% - 5 * var(--door-gap)) / 6)), 1fr));
+  --door-gap: 23px;
+  gap: var(--door-gap);
 }
 
 .door-slot {
   position: relative;
+  display: grid;
   min-width: 0;
-  aspect-ratio: 1;
   scroll-margin-top: 155px;
+}
+
+.door-slot:not(.opened) {
+  align-self: start;
+  aspect-ratio: 1;
 }
 
 // ==========================================================================
@@ -742,7 +751,7 @@ p {
   border-radius: 4px;
   background: #062a1f;
   color: var(--cream);
-  font-size: clamp(12px, 1.2vw, 16px);
+  font-size: clamp(0.75rem, calc(.5rem + .6vw), 1rem);
   line-height: 1.2;
   text-align: center;
   pointer-events: none;
@@ -852,7 +861,7 @@ p {
   position: absolute;
   bottom: 5px;
   left: 13px;
-  font-size: 32px;
+  font-size: 2rem;
   line-height: 1.1;
   color: var(--gold-light);
   text-shadow: 0 2px 2px #08271e;
@@ -863,7 +872,7 @@ p {
   left: 4px;
   top: -8px;
   z-index: 2;
-  font-size: 26px;
+  font-size: 1.625rem;
   color: var(--gold-light);
 }
 
@@ -881,7 +890,7 @@ p {
   position: absolute;
   right: 10px;
   bottom: 11px;
-  font: 9px Inter,sans-serif;
+  font: 0.5625rem Inter,sans-serif;
   opacity: 0;
   color: #dbc99f;
 }
@@ -900,9 +909,9 @@ p {
 
 .today-spark {
   position: absolute;
-  right: -12px;
+  right: 0;
   top: -20px;
-  font-size: 42px;
+  font-size: 2.625rem;
   color: #fbe7ad;
   text-shadow: 0 0 12px #f7ce64;
   animation: twinkle 3s ease-in-out infinite;
@@ -919,7 +928,7 @@ p {
 // ==========================================================================
 
 .opened-door {
-  height: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -931,40 +940,40 @@ p {
 }
 
 .opened-date {
-  font-size: 12px;
+  font-size: 0.875rem;
   color: var(--gold-light);
 }
 
 .opened-door p {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-style: normal;
   color: var(--gold-light);
   margin: 2px 0;
 }
 
 .daily-earned {
-  font-size: 28px;
+  font-size: 1.75rem;
   color: var(--cream);
   line-height: 1.1;
 
   small {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 }
 
 .earned-details {
-  font-size: 12px;
+  font-size: 0.875rem;
   line-height: 1.25;
   margin: 4px 0 8px;
 }
 
 .opened-door a {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .opened-star {
   color: var(--gold);
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1;
 }
 
@@ -1044,14 +1053,14 @@ p {
     text-align: center;
     font-style: italic;
     margin: 0 0 0 20px;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 2;
   }
 
   cite {
     font-style: normal;
     color: var(--gold);
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 }
 
@@ -1091,7 +1100,7 @@ p {
   flex-direction: column;
   align-items: center;
   gap: 13px;
-  font: 13px Inter,sans-serif;
+  font: 0.8125rem Inter,sans-serif;
 }
 
 .footer-top nav a,.footer-top nav button {
@@ -1110,7 +1119,7 @@ p {
   border-top: 1px solid var(--line);
   padding-top: 20px;
   text-align: center;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 // ==========================================================================
@@ -1131,13 +1140,13 @@ p {
   }
 
   h1 {
-    font-size: 64px;
+    font-size: 4rem;
     font-style: normal;
     margin: 0;
   }
 
   &>p:last-child {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 }
 
@@ -1158,7 +1167,7 @@ p {
     font-style: normal;
     border-left: 1px solid var(--gold);
     padding-left: 30px;
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 }
 
@@ -1167,8 +1176,9 @@ p {
 // ==========================================================================
 
 .story-book {
+  --chapter-tab-width: 1.8125rem;
   position: relative;
-  padding-left: 27px;
+  padding-left: calc(var(--chapter-tab-width) - 2px);
 }
 
 .chapter-tabs {
@@ -1177,7 +1187,7 @@ p {
   top: 12px;
   display: flex;
   flex-direction: column;
-  width: 29px;
+  width: var(--chapter-tab-width);
 
   a, span {
     border: 1px solid var(--gold);
@@ -1186,7 +1196,7 @@ p {
     min-height: 25px;
     text-align: center;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: var(--gold);
   }
 
@@ -1227,28 +1237,28 @@ p {
   }
 
   header p {
-    font-size: 27px;
+    font-size: 1.6875rem;
     margin: 0;
   }
 }
 
 .ornament {
   display: block;
-  font-size: 26px;
+  font-size: 1.625rem;
   line-height: 1.1;
   color: #b08a4a;
   text-align: center;
 }
 
 .story-page h2 {
-  font-size: 34px;
+  font-size: 2.125rem;
   font-style: italic;
   margin: 7px 0 0;
 }
 
 .story-text {
   font-family: 'Crimson Text',Georgia,serif;
-  font-size: 22px;
+  font-size: 1.375rem;
   line-height: 1.42;
   display: flow-root;
 
@@ -1264,7 +1274,7 @@ p {
 
 .first-paragraph::first-letter {
   float: left;
-  font-size: 64px;
+  font-size: 4rem;
   line-height: .8;
   padding: 8px 6px 0 0;
   color: #98723b;
@@ -1313,7 +1323,7 @@ p {
   padding: 0;
   border: 0;
   background: transparent;
-  font-size: 28px;
+  font-size: 1.75rem;
   color: var(--gold);
 }
 
@@ -1324,7 +1334,7 @@ p {
 }
 
 .audio-caption {
-  font-size: 15px;
+  font-size: 0.9375rem;
   text-align: center;
   margin-top: 10px;
   opacity: .8;
@@ -1350,7 +1360,7 @@ p {
 }
 
 .puzzle-instructions {
-  font-size: 17px;
+  font-size: 1.0625rem;
   max-width: 470px;
   margin: 0 auto 25px;
 }
@@ -1403,7 +1413,7 @@ p {
   border: 1px solid var(--line);
   background: #062a1f;
   color: var(--cream);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.4;
   text-align: center;
 }
@@ -1431,7 +1441,7 @@ p {
   justify-content: space-between;
   gap: 25px;
   margin: 18px 0;
-  font-size: 17px;
+  font-size: 1.0625rem;
   color: var(--gold-light);
 
   progress {
@@ -1492,11 +1502,11 @@ p {
   background: none;
   padding: 0 5px;
   color: var(--gold);
-  font-size: 37px;
+  font-size: 2.3125rem;
 }
 
 .puzzle-message {
-  font-size: 17px;
+  font-size: 1.0625rem;
   min-height: 25px;
   margin-top: 12px;
 }
@@ -1516,7 +1526,7 @@ p {
   padding: 15px 10px;
 
   &>span {
-    font-size: 50px;
+    font-size: 3.125rem;
     color: var(--gold);
   }
 
@@ -1550,13 +1560,13 @@ p {
   }
 
   h3 {
-    font-size: 22px;
+    font-size: 1.375rem;
     color: var(--gold-light);
     margin: 0 0 10px;
   }
 
   p {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
@@ -1581,13 +1591,13 @@ p {
 }
 
 .quiz-section>p {
-  font-size: 23px;
+  font-size: 1.4375rem;
 }
 
 .answer-link {
   display: inline-block;
   margin: 15px 0 30px;
-  font-size: 22px;
+  font-size: 1.375rem;
 }
 
 .quiz-section>.ticket-counter {
@@ -1595,7 +1605,7 @@ p {
 }
 
 .guest-quiz-note {
-  font-size: 16px!important;
+  font-size: 1rem!important;
   max-width: 480px;
   margin: 0 auto 30px;
 
@@ -1631,7 +1641,7 @@ p {
     text-align: center;
     width: 100%;
     padding: 0 20px 25px;
-    font-size: 30px;
+    font-size: 1.875rem;
     line-height: 1.2;
   }
 }
@@ -1670,7 +1680,7 @@ p {
     border: 1px solid var(--gold);
     padding: 9px 14px;
     flex: 1;
-    font-size: 22px;
+    font-size: 1.375rem;
     line-height: 1.25;
   }
 
@@ -1709,11 +1719,11 @@ p {
   }
 
   p {
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
 
   .result-tickets {
-    font-size: 25px;
+    font-size: 1.5625rem;
     color: var(--gold-light);
   }
 }
@@ -1741,7 +1751,7 @@ p {
   padding: 100px 15px;
 
   h1 {
-    font-size: 50px;
+    font-size: 3.125rem;
   }
 
   &>img {
@@ -1772,19 +1782,19 @@ p {
 }
 
 .modal-inner {
-  padding: 42px 34px 30px;
+  padding: 3.5rem 34px 30px;
 }
 
 .modal h2 {
-  font-size: 34px;
+  font-size: 2.125rem;
 }
 
 .modal p,.modal li {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .modal .small {
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 20px;
 }
 
@@ -1794,7 +1804,7 @@ p {
   top: 5px;
   border: 0;
   background: none;
-  font-size: 32px;
+  font-size: 2rem;
   color: var(--gold);
 }
 
@@ -1811,7 +1821,7 @@ p {
 }
 
 .modal .prototype-note {
-  font-size: 12px;
+  font-size: 0.875rem;
 }
 
 // ==========================================================================
@@ -1827,7 +1837,7 @@ p {
   color: #26372d;
   border: 1px solid #bfac86;
   border-radius: 7px;
-  font: 12px/1.5 Inter,sans-serif;
+  font: 0.75rem/1.5 Inter,sans-serif;
   box-shadow: 0 4px 25px #0003;
   max-width: calc(100vw - 28px);
 
@@ -1865,11 +1875,11 @@ p {
   padding: 18px;
   width: 310px;
   max-width: 100%;
-  max-height: 70vh;
+  max-height: 55dvh;
   overflow: auto;
 
   h2 {
-    font: 500 17px Inter,sans-serif;
+    font: 500 1.0625rem Inter,sans-serif;
     margin: 0 0 12px;
   }
 
@@ -1905,7 +1915,7 @@ p {
   }
 
   .current-profile {
-    font-size: 11px;
+    font-size: 0.6875rem;
     margin: 15px 0 8px;
     overflow-wrap: anywhere;
   }
@@ -1913,7 +1923,7 @@ p {
   small {
     display: block;
     margin-top: 13px;
-    font-size: 10px;
+    font-size: 0.625rem;
   }
 }
 
@@ -1929,7 +1939,7 @@ p {
   padding: 10px 20px;
   text-align: center;
   margin: 0;
-  font: 13px/1.5 Inter,sans-serif;
+  font: 0.8125rem/1.5 Inter,sans-serif;
 }
 
 // ==========================================================================
@@ -2010,10 +2020,6 @@ p {
     width: 220px;
   }
 
-  .hero-subtitle {
-    white-space: normal;
-  }
-
   .feature {
     gap: 12px;
     padding: 0 10px;
@@ -2024,7 +2030,7 @@ p {
     }
 
     p {
-      font-size: 19px;
+      font-size: 1.1875rem;
     }
   }
 
@@ -2034,7 +2040,7 @@ p {
   }
 
   .calendar-grid {
-    gap: 17px;
+    --door-gap: 17px;
   }
 
   .calendar-section {
@@ -2042,31 +2048,31 @@ p {
   }
 
   .door-number {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 
   .daily-earned {
-    font-size: 23px;
+    font-size: 1.4375rem;
   }
 
   .opened-date {
-    font-size: 10px;
+    font-size: 0.875rem;
   }
 
   .earned-details {
-    font-size: 10px;
+    font-size: 0.875rem;
   }
 
   .opened-door p {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .opened-door a {
-    font-size: 13px;
+    font-size: 0.875rem;
   }
 
   .bedtime-section blockquote {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 }
 
@@ -2076,7 +2082,7 @@ p {
 
 @media(max-width:700px) {
   body {
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
 
   .site-shell {
@@ -2099,7 +2105,7 @@ p {
   }
 
   .ringsted-wordmark {
-    font-size: 15px;
+    font-size: 0.9375rem;
     letter-spacing: -.4px;
   }
 
@@ -2108,27 +2114,25 @@ p {
   }
 
   .partner small {
-    font-size: 7px;
+    font-size: 0.625rem;
   }
 
   .partner strong {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .header-actions {
-    top: 53px;
     gap: 10px;
   }
 
   .outline-button {
-    font-size: 14px;
+    font-size: 0.875rem;
     padding: 1px 17px;
     min-height: 27px;
   }
 
   .back-link {
-    top: 60px;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .hero {
@@ -2144,13 +2148,13 @@ p {
 
   .hero .eyebrow {
     order: 0;
-    font-size: 19px;
+    font-size: 1.1875rem;
     margin-bottom: 10px;
   }
 
   .hero h1 {
     order: 1;
-    font-size: 62px;
+    font-size: 3.875rem;
     letter-spacing: -1.4px;
     margin: 0 0 12px;
   }
@@ -2161,7 +2165,7 @@ p {
 
   .hero-subtitle {
     order: 2;
-    font-size: 19px;
+    font-size: 1.1875rem;
     margin-bottom: 15px;
   }
 
@@ -2176,7 +2180,7 @@ p {
     margin: 21px 0 25px;
     min-width: 190px;
     min-height: 36px;
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
 
   .feature-section {
@@ -2184,7 +2188,7 @@ p {
 
 
     &>.eyebrow {
-      font-size: 28px;
+      font-size: 1.75rem;
       margin-bottom: 20px;
     }
   }
@@ -2206,7 +2210,7 @@ p {
     }
 
     p {
-      font-size: 17px;
+      font-size: 1.0625rem;
       line-height: 1.25;
     }
   }
@@ -2227,7 +2231,7 @@ p {
       border: 0;
       padding: 0;
       margin: 0 0 17px;
-      font-size: 29px;
+      font-size: 1.8125rem;
     }
   }
 
@@ -2239,13 +2243,13 @@ p {
 
   .competition-copy p {
     order: 2;
-    font-size: 16px;
+    font-size: 1rem;
     margin: 12px 0 0;
   }
 
   .competition-copy>.text-button {
     order: 3;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .parchment {
@@ -2253,11 +2257,11 @@ p {
   }
 
   .login-form h3 {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .form-rules {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .form-sleigh {
@@ -2267,22 +2271,22 @@ p {
   }
 
   .login-form .small {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .form-row input {
-    font-size: 15px;
+    font-size: 0.9375rem;
     padding: 5px 7px;
   }
 
   .form-row .gold-button {
     min-width: 70px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     padding: 4px 10px;
   }
 
   .prototype-note {
-    font-size: 9px;
+    font-size: 0.875rem;
   }
 
   .mailbox-bar {
@@ -2309,17 +2313,17 @@ p {
   }
 
   .mailbox-copy>p {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.3;
     margin-top: 9px;
   }
 
   .mailbox-copy>.text-button {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   .ticket-counter {
-    font-size: 18px;
+    font-size: 1.125rem;
     gap: 12px;
     padding: 4px 10px;
   }
@@ -2338,7 +2342,7 @@ p {
   }
 
   .ticket-counter.compact {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .calendar-intro {
@@ -2346,19 +2350,19 @@ p {
 
 
     h2 {
-      font-size: 29px;
+      font-size: 1.8125rem;
       max-width: 300px;
       margin: 0 auto 24px;
     }
 
     p {
-      font-size: 18px;
+      font-size: 1.125rem;
       max-width: 350px;
     }
   }
 
   .calendar-message {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.35;
     margin: 16px auto 20px;
     min-height: 38px;
@@ -2366,14 +2370,15 @@ p {
   }
 
   .calendar-grid {
-    grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 18px 15px;
+    --door-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, max(5rem, (100% - 2 * var(--door-gap)) / 3)), 1fr));
+    row-gap: 18px;
     max-width: 440px;
     margin: auto;
   }
 
   .door-number {
-    font-size: 30px;
+    font-size: 1.875rem;
     left: 9px;
     bottom: 3px;
   }
@@ -2392,7 +2397,7 @@ p {
   }
 
   .door-star {
-    font-size: 23px;
+    font-size: 1.4375rem;
     top: -7px;
     left: 1px;
   }
@@ -2404,45 +2409,44 @@ p {
   }
 
   .today-spark {
-    right: -9px;
     top: -15px;
-    font-size: 34px;
+    font-size: 2.125rem;
   }
 
   .lock-hint {
-    font-size: 8px;
+    font-size: 0.5rem;
     right: 7px;
     bottom: 9px;
   }
 
   .opened-date {
-    font-size: 10px;
+    font-size: 0.875rem;
   }
 
   .opened-door p {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .daily-earned {
-    font-size: 22px;
+    font-size: 1.375rem;
 
 
     small {
-      font-size: 13px;
+      font-size: 0.8125rem;
     }
   }
 
   .earned-details {
-    font-size: 10px;
+    font-size: 0.875rem;
     margin: 3px 0 4px;
   }
 
   .opened-door a {
-    font-size: 13px;
+    font-size: 0.875rem;
   }
 
   .opened-star {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .bedtime-section {
@@ -2453,14 +2457,14 @@ p {
 
     blockquote {
       margin: 0 20px -7px;
-      font-size: 18px;
+      font-size: 1.125rem;
       line-height: 1.8;
       align-self: flex-end;
       z-index: 1;
     }
 
     cite {
-      font-size: 15px;
+      font-size: 0.9375rem;
       display: block;
       text-align: right;
       margin-right: 5px;
@@ -2487,12 +2491,12 @@ p {
   }
 
   .footer-top nav {
-    font-size: 11px;
+    font-size: 0.6875rem;
     gap: 12px;
   }
 
   .copyright {
-    font-size: 11px;
+    font-size: 0.6875rem;
     padding-top: 12px;
   }
 
@@ -2501,15 +2505,15 @@ p {
 
 
     .eyebrow {
-      font-size: 19px;
+      font-size: 1.1875rem;
     }
 
     h1 {
-      font-size: 47px;
+      font-size: 2.9375rem;
     }
 
     &>p:last-child {
-      font-size: 19px;
+      font-size: 1.1875rem;
     }
   }
 
@@ -2524,26 +2528,25 @@ p {
     }
 
     span {
-      font-size: 19px;
+      font-size: 1.1875rem;
       padding-left: 23px;
     }
   }
 
   .story-book {
+    --chapter-tab-width: 1.4375rem;
     margin-left: -9px;
     margin-right: -4px;
-    padding-left: 22px;
   }
 
   .chapter-tabs {
-    width: 23px;
     top: 10px;
 
 
     a, span {
-      font-size: 16px;
+      font-size: 1rem;
       min-height: 23px;
-      line-height: 22px;
+      line-height: 1.375;
     }
   }
 
@@ -2564,21 +2567,21 @@ p {
     }
 
     header p {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
 
     h2 {
-      font-size: 28px;
+      font-size: 1.75rem;
     }
   }
 
   .story-text {
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 1.4;
   }
 
   .first-paragraph::first-letter {
-    font-size: 54px;
+    font-size: 3.375rem;
   }
 
   .story-text .story-illustration {
@@ -2597,7 +2600,7 @@ p {
   }
 
   .audio-caption {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .puzzle-section,.activity-section,.quiz-section {
@@ -2606,15 +2609,15 @@ p {
   }
 
   .puzzle-section h2 {
-    font-size: 31px;
+    font-size: 1.9375rem;
   }
 
   .puzzle-section>.gold {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   .puzzle-instructions {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .piece-carousel {
@@ -2637,20 +2640,20 @@ p {
   }
 
   .carousel-arrow {
-    font-size: 31px;
+    font-size: 1.9375rem;
     padding: 0 5px;
   }
 
   .puzzle-progress {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .puzzle-message {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .puzzle-section>.small {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .drag-piece {
@@ -2664,11 +2667,11 @@ p {
 
 
     h3 {
-      font-size: 20px;
+      font-size: 1.25rem;
     }
 
     p {
-      font-size: 18px;
+      font-size: 1.125rem;
     }
   }
 
@@ -2677,7 +2680,7 @@ p {
 
 
     h2 {
-      font-size: 32px;
+      font-size: 2rem;
     }
 
     img {
@@ -2686,11 +2689,11 @@ p {
   }
 
   .quiz-section>p {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .answer-link {
-    font-size: 20px;
+    font-size: 1.25rem;
     margin-bottom: 25px;
   }
 
@@ -2700,7 +2703,7 @@ p {
 
 
     legend {
-      font-size: 26px;
+      font-size: 1.625rem;
       padding: 0 0 18px;
     }
   }
@@ -2721,13 +2724,13 @@ p {
     }
 
     &>span {
-      font-size: 19px;
+      font-size: 1.1875rem;
       padding: 7px 10px;
     }
   }
 
   .quiz-result p {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .quiz-card .gold-button {
@@ -2739,15 +2742,16 @@ p {
   }
 
   .modal-inner {
-    padding: 38px 24px 25px;
+    padding-inline: 24px;
+    padding-bottom: 25px;
   }
 
   .modal h2 {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   .modal p,.modal li {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .modal .form-row {
@@ -2768,7 +2772,7 @@ p {
 
 
     summary {
-      font-size: 11px;
+      font-size: 0.6875rem;
       padding: 7px 10px;
     }
   }
@@ -2784,31 +2788,36 @@ p {
   }
 
   .hero h1 {
-    font-size: 57px;
+    font-size: 3.5625rem;
   }
 
   .hero-subtitle {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   .calendar-grid {
-    gap: 15px 11px;
+    --door-gap: 11px;
+    row-gap: 15px;
+  }
+
+  .calendar-door[data-day] {
+    transform: none;
   }
 
   .door-number {
-    font-size: 27px;
+    font-size: 1.6875rem;
   }
 
   .earned-details {
-    font-size: 9px;
+    font-size: 0.875rem;
   }
 
   .opened-door a {
-    font-size: 12px;
+    font-size: 0.875rem;
   }
 
   .ticket-counter {
-    font-size: 16px;
+    font-size: 1rem;
     gap: 10px;
   }
 
@@ -2822,11 +2831,11 @@ p {
   }
 
   .story-text {
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
 
   .form-rules {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }
 
@@ -2850,10 +2859,6 @@ p {
   .opened-door {
     padding: 5px 3px;
 
-
-    &:has(.daily-earned)>p {
-      display: none;
-    }
   }
 
   .opened-date {
