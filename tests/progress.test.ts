@@ -220,40 +220,41 @@ test(
   }
 );
 
-test(
-  'December 6 example matches 22, 23, then 28 tickets',
-  /* Checks the example profile’s ticket totals through opening and answering. */
-  () => {
-    let state = reduceProgress(initialState(), { type: 'example' });
-    assert.equal(totalTickets(getProgress(state)), 22);
-    state = reduceProgress(state, {
-      type: 'open',
-      day: 6,
-      profile: state.activeProfile,
-    });
-    assert.equal(totalTickets(getProgress(state)), 23);
-    state = reduceProgress(state, {
-      type: 'answer',
-      day: 6,
-      answer: 1,
-      correctIndex: 1,
-      profile: state.activeProfile,
-    });
-    assert.equal(totalTickets(getProgress(state)), 28);
-    state = reduceProgress(state, { type: 'date', date: '2026-12-05' });
-    assert.equal(
-      getDoorStatus(6, state.demoDate, getProgress(state)),
-      'locked'
-    );
-    assert.equal(totalTickets(getProgress(state)), 28);
-  }
-);
+test('bulk posting opens all lids and preserves existing progress', () => {
+  let state = reduceProgress(member(), { type: 'open', day: 6, profile: email });
+  state = reduceProgress(state, {
+    type: 'answer',
+    day: 6,
+    answer: 1,
+    correctIndex: 1,
+    profile: email,
+  });
+  const previousDay = getDay(getProgress(state), 6);
+  const action = { type: 'open-all', profile: email } as const;
+  state = reduceProgress(state, action);
+  assert.equal(state.activeProfile, email);
+  assert.equal(state.demoDate, '2026-12-24');
+  assert.equal(Object.keys(getProgress(state).days).length, 24);
+  assert.equal(totalTickets(getProgress(state)), 29);
+  assert.equal(getDay(getProgress(state), 6), previousDay);
+  assert.equal(reduceProgress(state, action), state);
+  const earlier = reduceProgress(state, { type: 'date', date: '2026-12-05' });
+  assert.equal(getDoorStatus(6, earlier.demoDate, getProgress(earlier)), 'locked');
+  assert.equal(totalTickets(getProgress(earlier)), 29);
+
+  const guest = reduceProgress(state, { type: 'logout' });
+  assert.equal(reduceProgress(guest, action), guest);
+  const guestPosted = reduceProgress(guest, { type: 'open-all', profile: null });
+  assert.equal(Object.keys(getProgress(guestPosted).days).length, 24);
+  assert.equal(totalTickets(getProgress(guestPosted)), 0);
+  assert.equal(guestPosted.profiles[email], state.profiles[email]);
+});
 
 test(
   'reset clears only the active profile; corrupted data is recoverable',
   /* Checks profile reset and recovery from invalid saved data. */
   () => {
-    let state = reduceProgress(initialState(), { type: 'example' });
+    let state = reduceProgress(member(), { type: 'open-all', profile: email });
     state = reduceProgress(state, { type: 'reset' });
     assert.equal(totalTickets(getProgress(state)), 0);
     assert.deepEqual(parseSavedState('broken'), initialState());

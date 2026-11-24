@@ -1,4 +1,4 @@
-/* Renders controls for testing dates, profiles, and example progress. */
+/* Renders controls for testing dates, profiles, and calendar progress. */
 
 import type { CalendarState } from '../../types/calendar';
 import { updateProgress } from '../../state/store';
@@ -73,14 +73,17 @@ export default function PrototypeControls({
         </button>
         <button
           onClick={
-            /* Loads the example profile and returns to the calendar homepage. */
+            /* Posts every lid for the current profile and returns to the calendar. */
             async () => {
-              await updateProgress({ type: 'example' });
+              await updateProgress({
+                type: 'open-all',
+                profile: state.activeProfile,
+              });
               window.location.hash = '#/';
             }
           }
         >
-          Vis 6. december med 22 lodder
+          Læg alle låger i postkassen
         </button>
         <button onClick={onReset}>Nulstil denne profils fremgang</button>
         <small>

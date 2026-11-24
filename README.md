@@ -1,6 +1,20 @@
-# Lille Fjer Christmas calendar
+# Lille Fjer Julekalender
 
-A complete interactive study prototype built from Klaudia Raniszewska's (Ross) supplied designs, images, React starter project, chapters, activities and quiz document.
+Denne studieprototype til DYKONs brand Ringsted Dun blev udviklet med assistance fra ChatGPT og Codex.
+
+Efter opsætning af React med TypeScript og installation af Sass organiserede jeg projektets mapper med udgangspunkt i min forståelse af komponenter og undervisningens cat-calendar-projekt.
+
+Herefter blev ChatGPT Astra Medium bedt om at videreudvikle projektet på baggrund af en ZIP-fil med koden fra VS Code, Figma-designet, Atomic Design-opdelingen og en detaljeret beskrivelse af funktionaliteten. Outputtet dannede et grundlag for at undersøge struktur og samspil i React og TypeScript. Den videre udvikling foregik med Codex og omfattede løbende vurdering, afprøvning og tilpasning af koden til det ønskede design og brugerforløb.
+
+Arbejdet med Codex omfattede blandt andet:
+- Opdatering og komprimering af billeder samt organisering af undermapper og kontrol af filstier.
+- Opdatering og konvertering af fonte.
+- Tilpasning af PrototypeControls.tsx, så testpersoner blandt andet kunne lægge alle låg i postkassen med ét klik.
+- Tilføjelse af automatiserede tests af kalenderens brugergrænseflade og logik.
+- Forbedring af tastaturbetjening og skærmlæserfeedback for kalenderlåger og puslespilsbrikker.
+- Justering af mobilbetjeningen efter feedback fra to uformelle testpersoner: Tilgængelige låger blev løftet under forsøg på at scrolle. Lågen skal derfor nu vælges med et tryk, før den kan trækkes til postkassen.
+- Begrænsning af quizbesvarelser efter feedback fra en testperson, så kun det første svar på dagens quiz tæller, uanset loginstatus, med henblik på at forhindre gentagen lodoptjening.
+
 
 ## Run locally
 
@@ -43,13 +57,15 @@ Component tests live beside their components.
 
 ## Try the experience
 
-The calendar starts on a simulated December 6, 2026. Open the small **Prototype** menu at the bottom left to change the date, use the real date in Denmark, load the example with 22 tickets, switch to a guest, or reset the current profile.
+The calendar starts on a simulated December 6, 2026. Open the small **Prototype** menu at the bottom left to change the date, use the real date in Denmark, post all lids at once, switch to a guest, or reset the current profile.
 
-1. Open **Prototype** and select **Vis 6. december med 22 lodder**.
-2. Drag lid 6 to the red mailbox. The total becomes 23.
+1. Sign in with a fresh test profile and set the preview date to December 6.
+2. Drag lid 6 to the red mailbox. You earn one ticket.
 3. Follow **Besøg dagen** to the chapter, puzzle and quiz.
-4. Choose the correct quiz answer. The total becomes 28, and day 6 shows six tickets when you return.
+4. Choose the correct quiz answer. Day 6 shows six tickets when you return.
 5. Try the same flow as a guest. Content opens, while ticket counters stay hidden.
+
+To post all 24 lids for the current profile, select **Læg alle låger i postkassen**. The preview date advances to December 24 if needed.
 
 For keyboard or tap access, choose a lid and then activate the mailbox. For the puzzle, choose a piece and then its slot. Dragging works with pointer events for mouse, pen and touch. Browser layout checks used desktop and a 390-pixel mobile frame. Physical-device testing remains useful for native touch and speech behavior.
 

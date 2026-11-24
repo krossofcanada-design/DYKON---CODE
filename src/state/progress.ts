@@ -100,7 +100,7 @@ export type ProgressAction =
     }
   | { type: 'piece'; day: number; piece: number; profile: string | null }
   | { type: 'reset' }
-  | { type: 'example' };
+  | { type: 'open-all'; profile: string | null };
 
 /* Applies a validated profile, date, or progress action without mutating state. */
 export function reduceProgress(
@@ -126,28 +126,21 @@ export function reduceProgress(
       return state;
     return { ...state, demoDate: action.date };
   }
-  if (action.type === 'example') {
-    const days: Record<number, DayProgress> = {};
-    // Matches the supplied December 6 mockup: 6 + 2 + 6 + 6 + 2 = 22 tickets.
-    [5, 1, 5, 5, 1].forEach(
-      /* Populates one day of the example profile’s progress. */
-      (tickets, index) => {
-        days[index + 1] = {
-          ...EMPTY_DAY,
-          opened: true,
-          doorTicket: true,
-          answer: [1, 0, 0, 2, 1][index],
-          quizTickets: tickets,
-          pieces: [],
-        };
-      }
-    );
-    return {
-      ...state,
-      activeProfile: 'eksempel@lillefjer.dk',
-      demoDate: '2026-12-06',
-      profiles: { ...state.profiles, 'eksempel@lillefjer.dk': { days } },
-    };
+  if (action.type === 'open-all') {
+    if (action.profile !== state.activeProfile) return state;
+    const lastDay = '2026-12-24';
+    let next =
+      (state.demoDate || today) < lastDay
+        ? { ...state, demoDate: lastDay }
+        : state;
+    for (let day = 1; day <= 24; day++) {
+      next = reduceProgress(
+        next,
+        { type: 'open', day, profile: action.profile },
+        today
+      );
+    }
+    return next;
   }
   const key = state.activeProfile ?? 'guest';
   const progress = getProgress(state);
