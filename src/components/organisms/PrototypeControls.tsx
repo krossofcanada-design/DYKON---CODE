@@ -1,5 +1,6 @@
 /* Renders controls for testing dates, profiles, and calendar progress. */
 
+import { useEffect, useRef } from 'react';
 import type { CalendarState } from '../../types/calendar';
 import { updateProgress } from '../../state/store';
 
@@ -14,8 +15,22 @@ export default function PrototypeControls({
   onLogin: () => void;
   onReset: () => void;
 }) {
+  const controlsRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    function closeOnOutsideClick(event: MouseEvent) {
+      const controls = controlsRef.current;
+      if (controls?.open && !event.composedPath().includes(controls)) {
+        controls.open = false;
+      }
+    }
+
+    document.addEventListener('click', closeOnOutsideClick, true);
+    return () => document.removeEventListener('click', closeOnOutsideClick, true);
+  }, []);
+
   return (
-    <details className="prototype-controls">
+    <details ref={controlsRef} className="prototype-controls">
       <summary>
         <span className="prototype-dot" />
         Prototype{' '}
